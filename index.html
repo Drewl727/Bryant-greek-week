@@ -98,6 +98,7 @@ section{padding:5rem 1.5rem}
 @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 .sb-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.75rem}
 .lb-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;backdrop-filter:blur(10px)}
+.lb-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .lb-head{padding:1.1rem 1.4rem;font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid rgba(255,215,0,0.09);display:flex;align-items:center;gap:.5rem}
 .lb-table{width:100%;border-collapse:collapse}
 .lb-table th{padding:.55rem .9rem;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);text-align:right;border-bottom:1px solid rgba(255,255,255,0.05)}
@@ -248,9 +249,8 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
   .hamburger{display:flex}
   .nav-links.open{display:flex;flex-direction:column;position:fixed;top:58px;left:0;right:0;background:rgba(9,9,15,0.97);padding:1rem;gap:.2rem;border-bottom:1px solid rgba(255,215,0,0.1)}
 
-  /* Scoreboard — make table scroll horizontally */
-  .lb-card{overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .lb-table{min-width:320px}
+  /* Scoreboard — scroll inside wrapper */
+  .lb-table{min-width:300px}
   .lb-table th,.lb-table td{padding:.6rem .55rem;font-size:.75rem}
   .lb-table td:first-child{font-size:.9rem;width:1.8rem}
   .lb-table td:nth-child(2){font-size:.78rem;max-width:110px}
@@ -522,7 +522,7 @@ function renderSB(data){
     let maxD=0;rows.forEach(r=>{if(r.days&&r.days.length>maxD)maxD=r.days.length;});
     const dhds=Array.from({length:maxD},(_,i)=>`<th>Day ${i+1}</th>`).join('');
     const maxTot=rows.length?(rows[0].total||(rows[0].days&&rows[0].days.length?rows[0].days[rows[0].days.length-1]:1)||1):1;
-    let html=`<div class="lb-card fi"><div class="lb-head">${icon} ${title}</div>
+    let html=`<div class="lb-card fi"><div class="lb-head">${icon} ${title}</div><div class="lb-scroll">
     <table class="lb-table"><thead><tr><th></th><th>Chapter</th>${dhds}<th>Total</th></tr></thead><tbody>`;
     rows.forEach((r,i)=>{
       const rank=i+1,badge=rank===1?'🥇':rank===2?'🥈':rank===3?'🥉':rank;
@@ -532,7 +532,7 @@ function renderSB(data){
       const empties=Array(maxD-(r.days?r.days.length:0)).fill('<td class="day-v">—</td>').join('');
       html+=`<tr class="r${rank}"><td>${badge}</td><td><div>${r.name||r.abbr}</div><div class="ch-bar-wrap"><div class="ch-bar" data-bar="${pct}%"></div></div></td>${dayCells}${empties}<td class="tot" data-cnt="${tot}">0</td></tr>`;
     });
-    html+=`</tbody></table></div>`;return html;
+    html+=`</tbody></table></div></div>`;return html;
   }
   const g=document.getElementById('sbGrid');
   g.innerHTML=table('Sororities','🌸',data.sororities)+table('Fraternities','🏛',data.fraternities);
