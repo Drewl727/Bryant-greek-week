@@ -743,10 +743,20 @@ function dismissBanner(){
 function shareURL(){
   const url='https://bryantgreekweek.com';
   if(navigator.share){
-    navigator.share({title:'Bryant Greek Week 2026',text:'Live scores & schedule for Bryant Greek Week 2026 – The Olympics!',url});
+    navigator.share({title:'Bryant Greek Week 2026',text:'Live scores & schedule for Bryant Greek Week 2026 – The Olympics!',url}).catch(()=>{});
+  } else if(navigator.clipboard&&window.isSecureContext){
+    navigator.clipboard.writeText(url).then(()=>showToast('🔗 Link copied!')).catch(()=>fallbackCopy(url));
   } else {
-    navigator.clipboard.writeText(url).then(()=>showToast('&#128279; Link copied!')).catch(()=>showToast('bryantgreekweek.com'));
+    fallbackCopy(url);
   }
+}
+function fallbackCopy(url){
+  const ta=document.createElement('textarea');
+  ta.value=url;ta.style.position='fixed';ta.style.opacity='0';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');showToast('🔗 Link copied!');}
+  catch(e){showToast('bryantgreekweek.com');}
+  document.body.removeChild(ta);
 }
 function showToast(msg){
   const t=document.getElementById('toast');
