@@ -506,9 +506,9 @@ function parseEvents(rows){
   for(let i=1;i<rows.length;i++){
     const r=rows[i];
     const sn=(r[0]||'').trim();
-    if(sn){const ev=EV_ORDER.find(e=>sn.toLowerCase().includes(e.toLowerCase().replace(' ','').slice(0,5)));if(ev)sm[ev]={name:ev,icon:EV_ICONS[ev]||'🏅',places:[r[1],r[2],r[3],r[4]].map(v=>(v||'').trim()).filter(Boolean)};}
+    if(sn){const ev=EV_ORDER.find(e=>sn.toLowerCase().includes(e.toLowerCase().split(' ')[0]));if(ev)sm[ev]={name:ev,icon:EV_ICONS[ev]||'🏅',places:[r[1],r[2],r[3],r[4]].map(v=>(v||'').trim()).filter(Boolean)};}
     const fn=(r[8]||'').trim();
-    if(fn){const ev=EV_ORDER.find(e=>fn.toLowerCase().includes(e.toLowerCase().replace(' ','').slice(0,5)));if(ev)fm[ev]={name:ev,icon:EV_ICONS[ev]||'🏅',places:[r[9],r[10],r[11],r[12],r[13]].map(v=>(v||'').trim()).filter(Boolean)};}
+    if(fn){const ev=EV_ORDER.find(e=>fn.toLowerCase().includes(e.toLowerCase().split(' ')[0]));if(ev)fm[ev]={name:ev,icon:EV_ICONS[ev]||'🏅',places:[r[9],r[10],r[11],r[12],r[13]].map(v=>(v||'').trim()).filter(Boolean)};}
   }
   return{
     sor:EV_ORDER.map(n=>sm[n]||{name:n,icon:EV_ICONS[n]||'🏅',places:[]}),
@@ -672,7 +672,7 @@ const SORS=[
   {abbr:'AOII',name:'Alpha Omicron Pi',   c1:'#B31B1B',c2:'#F0B0B0',lt:'ΑΟΠ'},
   {abbr:'ASA', name:'Alpha Sigma Alpha',  c1:'#9B0032',c2:'#EEBBD0',lt:'ΑΣΑ'},
   {abbr:'DZ',  name:'Delta Zeta',         c1:'#CC5500',c2:'#F9C4A8',lt:'ΔΖ'},
-  {abbr:'ΣΣΣ', name:'Sigma Sigma Sigma',  c1:'5B2D8E',c2:'#C9A8E8',lt:'ΣΣΣ'},
+  {abbr:'ΣΣΣ', name:'Sigma Sigma Sigma',  c1:'#5B2D8E',c2:'#C9A8E8',lt:'ΣΣΣ'},
 ];
 const FRATS=[
   {abbr:'DX',  name:'Delta Chi',           c1:'#AA0000',c2:'#E8D080',lt:'ΔΧ'},
@@ -736,6 +736,7 @@ function closeNav(){document.getElementById('navLinks').classList.remove('open')
 function dismissBanner(){
   const b=document.getElementById('conductBanner');
   b.classList.add('gone');
+  b.addEventListener('transitionend',()=>{b.style.display='none';},{once:true});
   localStorage.setItem('bannerDone','1');
 }
 
@@ -770,8 +771,8 @@ const CD_EVENTS=[
   {name:'Spike Ball',              dt:new Date(2026,2,30,16,0)},
   {name:'Cornhole',                dt:new Date(2026,2,30,17,0)},
   {name:'Volleyball',              dt:new Date(2026,2,31,13,0)},
-  {name:'Jeopardy',                dt:new Date(2026,3,1,21,30)},
   {name:'Basketball',              dt:new Date(2026,3,1,13,0)},
+  {name:'Jeopardy',                dt:new Date(2026,3,1,21,30)},
   {name:'Tug of War',              dt:new Date(2026,3,2,13,0)},
   {name:'Relay Race',              dt:new Date(2026,3,2,15,0)},
   {name:'School Supplies Deadline',dt:new Date(2026,3,3,12,0)},
