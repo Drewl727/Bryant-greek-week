@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bryant Greek Week 2026 | The Olympics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #FFD700;
+  --gold-dim: rgba(255,215,0,0.15);
+  --black: #09090f;
+  --navy: #0d0d1c;
+  --navy-mid: #13132a;
+  --card: rgba(19,19,42,0.85);
+  --border: rgba(255,215,0,0.13);
+  --t1: #fff;
+  --t2: rgba(255,255,255,0.65);
+  --t3: rgba(255,255,255,0.35);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--black);color:var(--t1);overflow-x:hidden}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;background:rgba(9,9,15,0.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,215,0,0.08)}
+.nav-brand{font-weight:800;font-size:.9rem;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.nav-links{display:flex;gap:.15rem;list-style:none}
+.nav-links a{color:var(--t2);text-decoration:none;font-size:.75rem;font-weight:600;padding:.35rem .7rem;border-radius:6px;transition:all .2s;letter-spacing:.06em;text-transform:uppercase}
+.nav-links a:hover{color:var(--gold);background:rgba(255,215,0,0.08)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:22px;height:2px;background:var(--gold);border-radius:2px;transition:.3s}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:78px 1.5rem 3rem;text-align:center}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 90% 55% at 50% -5%,rgba(255,215,0,0.09) 0%,transparent 65%),radial-gradient(ellipse 50% 40% at 80% 90%,rgba(255,215,0,0.04) 0%,transparent 55%),linear-gradient(180deg,#09090f 0%,#0d0d1c 100%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,215,0,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,215,0,0.025) 1px,transparent 1px);background-size:56px 56px}
+.hero-content{position:relative;max-width:860px;width:100%}
+.hero-pill{display:inline-flex;align-items:center;gap:.45rem;background:rgba(255,215,0,0.09);border:1px solid rgba(255,215,0,0.28);color:var(--gold);padding:.38rem 1rem;border-radius:50px;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.4rem}
+.hero-title{font-size:clamp(2.8rem,9vw,6rem);font-weight:900;line-height:.95;letter-spacing:-.02em;margin-bottom:.6rem}
+.hero-title .g{color:var(--gold)}
+.hero-theme{font-size:clamp(1.1rem,4vw,2rem);font-weight:300;color:var(--t2);letter-spacing:.35em;text-transform:uppercase;margin-bottom:2rem}
+.rings{display:flex;justify-content:center;gap:.55rem;margin-bottom:2rem}
+.ring{border-radius:50%;border:3.5px solid;animation:float 3s ease-in-out infinite}
+.ring:nth-child(1){width:clamp(28px,4.5vw,42px);height:clamp(28px,4.5vw,42px);border-color:#0085C7;animation-delay:0s}
+.ring:nth-child(2){width:clamp(28px,4.5vw,42px);height:clamp(28px,4.5vw,42px);border-color:#F4C300;animation-delay:.15s}
+.ring:nth-child(3){width:clamp(28px,4.5vw,42px);height:clamp(28px,4.5vw,42px);border-color:#009F3D;animation-delay:.3s}
+.ring:nth-child(4){width:clamp(28px,4.5vw,42px);height:clamp(28px,4.5vw,42px);border-color:#DF0024;animation-delay:.45s}
+.ring:nth-child(5){width:clamp(28px,4.5vw,42px);height:clamp(28px,4.5vw,42px);border-color:#F4C300;animation-delay:.6s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.hero-dates{font-size:1rem;color:var(--t2);font-weight:500;letter-spacing:.08em}
+.hero-dates b{color:var(--gold)}
+.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.4rem;color:var(--t3);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;animation:scrollbob 2.2s ease-in-out infinite}
+.hero-scroll::after{content:'';width:1px;height:36px;background:linear-gradient(to bottom,var(--t3),transparent)}
+@keyframes scrollbob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
+
+/* ── SHARED ── */
+section{padding:5rem 1.5rem}
+.container{max-width:1200px;margin:0 auto}
+.sec-label{font-size:.7rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
+.sec-title{font-size:clamp(1.8rem,4vw,2.7rem);font-weight:800;line-height:1.05;margin-bottom:.4rem}
+.sec-sub{color:var(--t2);font-size:.95rem;margin-bottom:2.5rem}
+
+/* ── SCOREBOARD ── */
+#scores{background:var(--navy)}
+.score-header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem}
+.live-chip{display:flex;align-items:center;gap:.45rem;background:rgba(255,215,0,0.08);border:1px solid rgba(255,215,0,0.2);color:var(--gold);padding:.35rem .85rem;border-radius:50px;font-size:.7rem;font-weight:700;letter-spacing:.06em}
+.live-dot{width:7px;height:7px;background:#22c55e;border-radius:50%;animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+.refresh-btn{display:flex;align-items:center;gap:.45rem;background:transparent;border:1px solid rgba(255,215,0,0.18);color:var(--t2);padding:.35rem .85rem;border-radius:50px;font-size:.7rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Outfit',sans-serif;letter-spacing:.06em;margin-top:.4rem}
+.refresh-btn:hover{border-color:var(--gold);color:var(--gold)}
+.refresh-btn.spin svg{animation:spin 1s linear infinite}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.sb-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.75rem}
+.lb-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;backdrop-filter:blur(10px)}
+.lb-head{padding:1.1rem 1.4rem;font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid rgba(255,215,0,0.09);display:flex;align-items:center;gap:.5rem}
+.lb-table{width:100%;border-collapse:collapse}
+.lb-table th{padding:.55rem .9rem;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);text-align:right;border-bottom:1px solid rgba(255,255,255,0.05)}
+.lb-table th:first-child,.lb-table th:nth-child(2){text-align:left}
+.lb-table td{padding:.8rem .9rem;font-size:.88rem;text-align:right;border-bottom:1px solid rgba(255,255,255,0.04);font-weight:500}
+.lb-table td:first-child{text-align:left;width:2.2rem;font-size:1rem}
+.lb-table td:nth-child(2){text-align:left;font-weight:700;font-size:.88rem}
+.lb-table tr:last-child td{border-bottom:none}
+.r1 td{background:rgba(255,215,0,0.055)}
+.r1 td:nth-child(2){color:var(--gold)}
+.r1 .tot{color:var(--gold);font-weight:900;font-size:.95rem}
+.day-v{color:var(--t2);font-size:.82rem}
+.tot{font-weight:800}
+.skel{background:linear-gradient(90deg,rgba(255,255,255,0.04) 25%,rgba(255,255,255,0.09) 50%,rgba(255,255,255,0.04) 75%);background-size:200% 100%;animation:skel 1.5s infinite;border-radius:4px;height:14px;display:inline-block;width:80%}
+@keyframes skel{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.last-upd{font-size:.68rem;color:var(--t3);margin-top:.9rem;text-align:center}
+
+/* ── EVENTS ── */
+#events{background:var(--black)}
+.tabs{display:flex;gap:.45rem;margin-bottom:1.75rem}
+.tab{padding:.55rem 1.4rem;border-radius:8px;border:1px solid rgba(255,215,0,0.2);background:transparent;color:var(--t2);font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Outfit',sans-serif;letter-spacing:.04em}
+.tab.on{background:var(--gold);border-color:var(--gold);color:var(--black)}
+.tab-panel{display:none}.tab-panel.on{display:block}
+.ev-head{display:grid;padding:0 1.2rem .45rem;gap:.65rem}
+.ev-head.s{grid-template-columns:2fr 1fr 1fr 1fr 1fr}
+.ev-head.f{grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr}
+.ev-head span{font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--t3);text-align:center}
+.ev-head span:first-child{text-align:left}
+.ev-list{display:flex;flex-direction:column;gap:.6rem}
+.ev-row{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:.9rem 1.2rem;display:grid;align-items:center;gap:.65rem;backdrop-filter:blur(8px);transition:border-color .2s}
+.ev-row:hover{border-color:rgba(255,215,0,0.28)}
+.ev-row.upcoming{opacity:.55;border-style:dashed}
+.ev-row.s{grid-template-columns:2fr 1fr 1fr 1fr 1fr}
+.ev-row.f{grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr}
+.ev-name{display:flex;align-items:center;gap:.55rem;font-weight:700;font-size:.88rem}
+.ev-icon{font-size:1.15rem}
+.place-cell{display:flex;flex-direction:column;align-items:center;gap:.05rem;text-align:center}
+.place-lbl{font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3)}
+.place-ch{font-size:.78rem;font-weight:700}
+.place-pts{font-size:.68rem;color:var(--gold);font-weight:600}
+.p1 .place-ch{color:#FFD700}
+.p2 .place-ch{color:#C0C0C0}
+.p3 .place-ch{color:#CD7F32}
+.upcoming-label{grid-column:2/-1;font-size:.78rem;color:var(--t3);font-style:italic;text-align:center}
+
+/* ── SCHEDULE ── */
+#schedule{background:var(--navy)}
+.days{display:flex;flex-direction:column;gap:1.2rem}
+.day-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;backdrop-filter:blur(8px)}
+.day-card.today{border-color:rgba(255,215,0,0.45);box-shadow:0 0 32px rgba(255,215,0,0.07)}
+.day-top{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.4rem;border-bottom:1px solid rgba(255,255,255,0.055)}
+.day-name{font-weight:800;font-size:.95rem}
+.day-date{font-size:.75rem;color:var(--t2);margin-top:.1rem}
+.badge-today{background:var(--gold);color:var(--black);font-size:.62rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:.28rem .7rem;border-radius:50px}
+.badge-done{background:rgba(255,255,255,0.07);color:var(--t3);font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.28rem .7rem;border-radius:50px}
+.day-evs{padding:.7rem 1.4rem 1.1rem;display:flex;flex-direction:column;gap:.55rem}
+.sched-ev{display:grid;grid-template-columns:1.6rem 1fr auto;align-items:center;gap:.7rem}
+.sched-icon{font-size:1rem}
+.sched-name{font-weight:700;font-size:.86rem}
+.sched-loc{font-size:.74rem;color:var(--t3)}
+.sched-time{font-size:.78rem;font-weight:700;color:var(--gold);white-space:nowrap}
+
+/* ── RULES ── */
+#rules{background:var(--black)}
+.accordion-wrap{display:flex;flex-direction:column;gap:.65rem}
+.acc{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;backdrop-filter:blur(8px)}
+.acc-hd{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.4rem;cursor:pointer;gap:1rem;transition:background .2s;user-select:none}
+.acc-hd:hover{background:rgba(255,215,0,0.035)}
+.acc-left{display:flex;align-items:center;gap:.7rem}
+.acc-icon{font-size:1.15rem}
+.acc-title{font-weight:700;font-size:.9rem}
+.acc-meta{font-size:.7rem;color:var(--t3);font-weight:500;margin-top:.1rem}
+.acc-chev{color:var(--gold);transition:transform .3s;flex-shrink:0}
+.acc.open .acc-chev{transform:rotate(180deg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.acc.open .acc-body{max-height:1200px}
+.acc-content{padding:0 1.4rem 1.4rem;border-top:1px solid rgba(255,255,255,0.055)}
+.r-sec{font-size:.65rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:1rem 0 .45rem}
+.r-list{list-style:none;display:flex;flex-direction:column;gap:.28rem}
+.r-list li{font-size:.82rem;color:var(--t2);padding-left:.9rem;position:relative;line-height:1.5}
+.r-list li::before{content:'•';position:absolute;left:0;color:var(--gold)}
+.pts-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-top:.6rem}
+.pts-block{background:rgba(255,215,0,0.035);border:1px solid rgba(255,215,0,0.09);border-radius:8px;padding:.7rem .9rem}
+.pts-block-title{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.45rem}
+.pts-row{display:flex;justify-content:space-between;font-size:.78rem;padding:.18rem 0}
+.pts-row .pl{color:var(--t2)}
+.pts-row .p{font-weight:700;color:var(--gold)}
+
+/* ── CHAPTERS ── */
+#chapters{background:var(--navy)}
+.ch-section-lbl{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;display:flex;align-items:center;gap:.6rem}
+.ch-section-lbl::after{content:'';flex:1;height:1px;background:rgba(255,215,0,0.12)}
+.ch-grid{display:grid;gap:.9rem;margin-bottom:2rem}
+.ch-grid.sor{grid-template-columns:repeat(4,1fr)}
+.ch-grid.frat{grid-template-columns:repeat(5,1fr)}
+.ch-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem .9rem;text-align:center;backdrop-filter:blur(8px);transition:all .25s;cursor:default}
+.ch-card:hover{border-color:rgba(255,215,0,0.32);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.3)}
+.ch-crest{width:58px;height:66px;margin:0 auto .7rem;display:block}
+.ch-abbr{font-size:1rem;font-weight:800;color:var(--gold);letter-spacing:.04em}
+.ch-full{font-size:.68rem;color:var(--t3);margin-top:.2rem;line-height:1.35}
+
+/* ── FOOTER ── */
+footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding:3rem 1.5rem;text-align:center}
+.ft-title{font-size:1.15rem;font-weight:800;color:var(--gold);margin-bottom:.4rem}
+.ft-committee{font-size:.82rem;color:var(--t2);margin-bottom:1.3rem}
+.ft-div{width:50px;height:1px;background:rgba(255,215,0,0.18);margin:.9rem auto}
+.ft-sub{font-size:.7rem;color:var(--t3);letter-spacing:.1em}
+
+/* ── FADE IN ── */
+.fi{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.fi.vis{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .sb-grid{grid-template-columns:1fr}
+  .ch-grid.sor{grid-template-columns:repeat(2,1fr)}
+  .ch-grid.frat{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:640px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;top:58px;left:0;right:0;background:rgba(9,9,15,0.97);padding:1rem;gap:.2rem;border-bottom:1px solid rgba(255,215,0,0.1)}
+  .ev-row.s,.ev-row.f{grid-template-columns:1fr 1fr;row-gap:.5rem}
+  .ev-row.s .ev-name,.ev-row.f .ev-name{grid-column:1/-1}
+  .ev-head.s,.ev-head.f{display:none}
+  .pts-grid{grid-template-columns:1fr}
+  .ch-grid.sor,.ch-grid.frat{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">&#127947; Bryant Greek Week</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#scores" onclick="closeNav()">Scores</a></li>
+    <li><a href="#events" onclick="closeNav()">Events</a></li>
+    <li><a href="#schedule" onclick="closeNav()">Schedule</a></li>
+    <li><a href="#rules" onclick="closeNav()">Rules</a></li>
+    <li><a href="#chapters" onclick="closeNav()">Chapters</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-pill">&#127891; Bryant University</div>
+    <h1 class="hero-title">Greek Week <span class="g">2026</span></h1>
+    <div class="hero-theme">&#128481; The Olympics &#127941;</div>
+    <div class="rings">
+      <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+      <div class="ring"></div><div class="ring"></div>
+    </div>
+    <p class="hero-dates"><b>March 30</b> &mdash; <b>April 3, 2026</b></p>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- SCOREBOARD -->
+<section id="scores">
+  <div class="container">
+    <div class="score-header">
+      <div>
+        <div class="sec-label">Live Standings</div>
+        <h2 class="sec-title">Scoreboard</h2>
+        <p class="sec-sub">Pulled live from the official score sheet</p>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:.35rem">
+        <div class="live-chip"><div class="live-dot"></div> Live</div>
+        <button class="refresh-btn" id="refreshBtn" onclick="doRefresh()">
+          <svg id="rIcon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M1 4v6h6M23 20v-6h-6"/>
+            <path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/>
+          </svg>Refresh
+        </button>
+      </div>
+    </div>
+    <div class="sb-grid" id="sbGrid">
+      <div class="lb-card"><div class="lb-head">&#127800; Sororities</div><div style="padding:1.5rem;text-align:center"><span class="skel" style="width:60%;margin-bottom:.6rem;display:block"></span><span class="skel" style="width:80%;margin-bottom:.6rem;display:block"></span><span class="skel" style="width:70%"></span></div></div>
+      <div class="lb-card"><div class="lb-head">&#127963; Fraternities</div><div style="padding:1.5rem;text-align:center"><span class="skel" style="width:60%;margin-bottom:.6rem;display:block"></span><span class="skel" style="width:80%;margin-bottom:.6rem;display:block"></span><span class="skel" style="width:70%"></span></div></div>
+    </div>
+    <div class="last-upd" id="lastUpd"></div>
+  </div>
+</section>
+
+<!-- EVENT RESULTS -->
+<section id="events">
+  <div class="container">
+    <div class="sec-label">Results</div>
+    <h2 class="sec-title">Event Results</h2>
+    <p class="sec-sub">Placements and points for each competition</p>
+    <div class="tabs">
+      <button class="tab on" onclick="switchTab('sor',this)">Sororities</button>
+      <button class="tab" onclick="switchTab('frat',this)">Fraternities</button>
+    </div>
+    <div class="tab-panel on" id="sor-panel">
+      <div class="ev-head s"><span>Event</span><span>&#129351; 1st</span><span>&#129352; 2nd</span><span>&#129353; 3rd</span><span>4th</span></div>
+      <div class="ev-list" id="sorEvents"></div>
+    </div>
+    <div class="tab-panel" id="frat-panel">
+      <div class="ev-head f"><span>Event</span><span>&#129351; 1st</span><span>&#129352; 2nd</span><span>&#129353; 3rd</span><span>4th</span><span>5th</span></div>
+      <div class="ev-list" id="fratEvents"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section id="schedule">
+  <div class="container">
+    <div class="sec-label">Week at a Glance</div>
+    <h2 class="sec-title">Schedule</h2>
+    <p class="sec-sub">March 30 &ndash; April 3, 2026</p>
+    <div class="days" id="schedDays"></div>
+  </div>
+</section>
+
+<!-- RULES -->
+<section id="rules">
+  <div class="container">
+    <div class="sec-label">Know Before You Go</div>
+    <h2 class="sec-title">Event Rules</h2>
+    <p class="sec-sub">Official rules for all Greek Week competitions</p>
+    <div class="accordion-wrap" id="rulesWrap"></div>
+  </div>
+</section>
+
+<!-- CHAPTERS -->
+<section id="chapters">
+  <div class="container">
+    <div class="sec-label">Competing This Week</div>
+    <h2 class="sec-title">Chapters</h2>
+    <p class="sec-sub">All organizations competing in Greek Week 2026</p>
+    <div class="ch-section-lbl">Sororities</div>
+    <div class="ch-grid sor" id="sorGrid"></div>
+    <div class="ch-section-lbl">Fraternities</div>
+    <div class="ch-grid frat" id="fratGrid"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-title">Bryant Greek Week 2026</div>
+  <div class="ft-committee">Committee: Nadia Del Sonno &middot; Gerry Kent &middot; JP</div>
+  <div class="ft-div"></div>
+  <div class="ft-sub">The Olympics &middot; March 30 &ndash; April 3, 2026 &middot; Bryant University</div>
+</footer>
+
+<script>
+// ── SHEETS URLS ──────────────────────────────────────────────
+const SHEET_POINTS = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTmfeoDVamAuHIVm7qPD3V-TYxG_G71an38rqlY_y42OJbAueiy1PBEpKujBb6SYg/pub?output=csv&sheet=Points';
+const SHEET_EVENTS = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTmfeoDVamAuHIVm7qPD3V-TYxG_G71an38rqlY_y42OJbAueiy1PBEpKujBb6SYg/pub?output=csv&sheet=Events';
+
+// ── FALLBACK DATA ─────────────────────────────────────────────
+const FB_PTS = {
+  sororities:[
+    {abbr:'DZ',   name:'Delta Zeta',          days:[210,320,430]},
+    {abbr:'Sigma',name:'Sigma Sigma Sigma',    days:[210,295,380]},
+    {abbr:'AOII', name:'Alpha Omicron Pi',     days:[210,270,305]},
+    {abbr:'ASA',  name:'Alpha Sigma Alpha',    days:[160,185,245]},
+  ],
+  fraternities:[
+    {abbr:'DKE',  name:'Delta Kappa Epsilon',  days:[270,375,465]},
+    {abbr:'TKE',  name:'Tau Kappa Epsilon',    days:[250,385,435]},
+    {abbr:'TEP',  name:'Tau Epsilon Phi',      days:[150,220,290]},
+    {abbr:'EX',   name:'Sigma Chi',             days:[130,150,260]},
+    {abbr:'DX',   name:'Delta Chi',             days:[150,200,230]},
+  ]
+};
+
+const FB_EV = {
+  sor:[
+    {name:'Mocktails',   icon:'🍹',places:['DZ (100)','AOII (75)','Sigma (50)','ASA (25)']},
+    {name:'Spike Ball',  icon:'⚡',places:['Sigma (100)','DZ (75)','ASA (50)','AOII (25)']},
+    {name:'Cornhole',    icon:'🎯',places:['AOII (100)','ASA (75)','Sigma (50)','DZ (25)']},
+    {name:'Volleyball',  icon:'🏐',places:['DZ (100)','Sigma (75)','AOII (50)','ASA (25)']},
+    {name:'Basketball',  icon:'🏀',places:['DZ (100)','Sigma (75)','ASA (50)','AOII (25)']},
+    {name:'Jeopardy',    icon:'🧠',places:[]},
+    {name:'Tug of War',  icon:'💪',places:[]},
+    {name:'Relay Race',  icon:'🏃',places:[]},
+    {name:'Lip Sync',    icon:'🎤',places:[]},
+    {name:'School Supplies',icon:'📦',places:[]},
+  ],
+  frat:[
+    {name:'Mocktails',   icon:'🍹',places:['TKE (100)','TEP (80)','DKE (60)','EX (40)','DX (20)']},
+    {name:'Spike Ball',  icon:'⚡',places:['DKE (100)','DX (80)','TKE (60)','TEP (40)','EX (20)']},
+    {name:'Cornhole',    icon:'🎯',places:['DKE (100)','TKE (80)','EX (60)','DX (40)','TEP (20)']},
+    {name:'Volleyball',  icon:'🏐',places:['TKE (100)','DKE (80)','TEP (60)','DX (40)','EX (20)']},
+    {name:'Basketball',  icon:'🏀',places:['EX (100)','DKE (80)','TEP (60)','TKE (40)','DX (20)']},
+    {name:'Jeopardy',    icon:'🧠',places:[]},
+    {name:'Tug of War',  icon:'💪',places:[]},
+    {name:'Relay Race',  icon:'🏃',places:[]},
+    {name:'Lip Sync',    icon:'🎤',places:[]},
+    {name:'School Supplies',icon:'📦',places:[]},
+  ]
+};
+
+const CNAMES = {Sigma:'Sigma Sigma Sigma',DZ:'Delta Zeta',AOII:'Alpha Omicron Pi',ASA:'Alpha Sigma Alpha',DKE:'Delta Kappa Epsilon',TKE:'Tau Kappa Epsilon',DX:'Delta Chi',EX:'Sigma Chi',TEP:'Tau Epsilon Phi'};
+const EV_ORDER = ['Mocktails','Spike Ball','Cornhole','Volleyball','Basketball','Jeopardy','Tug of War','Relay Race','Lip Sync','School Supplies'];
+const EV_ICONS = {Mocktails:'🍹','Spike Ball':'⚡',Cornhole:'🎯',Volleyball:'🏐',Basketball:'🏀',Jeopardy:'🧠','Tug of War':'💪','Relay Race':'🏃','Lip Sync':'🎤','School Supplies':'📦'};
+
+// ── CSV PARSER ────────────────────────────────────────────────
+function parseCSV(txt){
+  return txt.trim().split('\n').map(line=>{
+    const cells=[];let cur='',inQ=false;
+    for(let i=0;i<line.length;i++){
+      if(line[i]==='"'){inQ=!inQ;}
+      else if(line[i]===',' && !inQ){cells.push(cur.trim());cur='';}
+      else cur+=line[i];
+    }
+    cells.push(cur.trim());return cells;
+  });
+}
+
+// ── PARSE POINTS TAB ──────────────────────────────────────────
+function parsePoints(rows){
+  const sor=[],frat=[];let inFrat=false;
+  for(let i=1;i<rows.length;i++){
+    const r=rows[i],name=(r[0]||'').trim();
+    if(!name){inFrat=true;continue;}
+    const days=[];
+    for(let d=1;d<=5;d++){const v=(r[d]||'').trim();if(v)days.push(parseInt(v.replace(/,/g,''))||0);}
+    const total=r[6]?parseInt((r[6]||'').trim().replace(/,/g,''))||0:days[days.length-1]||0;
+    const entry={abbr:name,name:CNAMES[name]||name,days,total};
+    if(inFrat)frat.push(entry);else sor.push(entry);
+  }
+  const sf=a=>-(a.total||(a.days[a.days.length-1]||0));
+  sor.sort((a,b)=>sf(a)-sf(b));frat.sort((a,b)=>sf(a)-sf(b));
+  return{sororities:sor,fraternities:frat};
+}
+
+// ── PARSE EVENTS TAB ──────────────────────────────────────────
+function parseEvents(rows){
+  const sm={},fm={};
+  for(let i=1;i<rows.length;i++){
+    const r=rows[i];
+    const sn=(r[0]||'').trim();
+    if(sn){const ev=EV_ORDER.find(e=>sn.toLowerCase().includes(e.toLowerCase().replace(' ','').slice(0,5)));if(ev)sm[ev]={name:ev,icon:EV_ICONS[ev]||'🏅',places:[r[1],r[2],r[3],r[4]].map(v=>(v||'').trim()).filter(Boolean)};}
+    const fn=(r[8]||'').trim();
+    if(fn){const ev=EV_ORDER.find(e=>fn.toLowerCase().includes(e.toLowerCase().replace(' ','').slice(0,5)));if(ev)fm[ev]={name:ev,icon:EV_ICONS[ev]||'🏅',places:[r[9],r[10],r[11],r[12],r[13]].map(v=>(v||'').trim()).filter(Boolean)};}
+  }
+  return{
+    sor:EV_ORDER.map(n=>sm[n]||{name:n,icon:EV_ICONS[n]||'🏅',places:[]}),
+    frat:EV_ORDER.map(n=>fm[n]||{name:n,icon:EV_ICONS[n]||'🏅',places:[]})
+  };
+}
+
+// ── RENDER SCOREBOARD ─────────────────────────────────────────
+function renderSB(data){
+  function table(title,icon,rows){
+    let maxD=0;rows.forEach(r=>{if(r.days&&r.days.length>maxD)maxD=r.days.length;});
+    const dhds=Array.from({length:maxD},(_,i)=>`<th>Day ${i+1}</th>`).join('');
+    let html=`<div class="lb-card fi"><div class="lb-head">${icon} ${title}</div>
+    <table class="lb-table"><thead><tr><th></th><th>Chapter</th>${dhds}<th>Total</th></tr></thead><tbody>`;
+    rows.forEach((r,i)=>{
+      const rank=i+1,badge=rank===1?'🥇':rank===2?'🥈':rank===3?'🥉':rank;
+      const tot=r.total||(r.days&&r.days.length?r.days[r.days.length-1]:0);
+      const dayCells=(r.days||[]).map(d=>`<td class="day-v" data-cnt="${d}">0</td>`).join('');
+      const empties=Array(maxD-(r.days?r.days.length:0)).fill('<td class="day-v">—</td>').join('');
+      html+=`<tr class="r${rank}"><td>${badge}</td><td>${r.name||r.abbr}</td>${dayCells}${empties}<td class="tot" data-cnt="${tot}">0</td></tr>`;
+    });
+    html+=`</tbody></table></div>`;return html;
+  }
+  const g=document.getElementById('sbGrid');
+  g.innerHTML=table('Sororities','🌸',data.sororities)+table('Fraternities','🏛',data.fraternities);
+  requestAnimationFrame(()=>{document.querySelectorAll('#sbGrid .fi').forEach(e=>e.classList.add('vis'));});
+  setupCountUp();
+}
+
+// ── COUNT-UP ANIMATION ────────────────────────────────────────
+function animCount(el,target,dur=1100){
+  if(el._done)return;el._done=true;
+  const t0=performance.now();
+  (function tick(now){
+    const p=Math.min((now-t0)/dur,1),e=1-Math.pow(1-p,3);
+    el.textContent=Math.floor(e*target);
+    if(p<1)requestAnimationFrame(tick);else el.textContent=target;
+  })(t0);
+}
+function setupCountUp(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(en=>{if(en.isIntersecting)en.target.querySelectorAll('[data-cnt]').forEach(el=>animCount(el,+el.dataset.cnt));});
+  },{threshold:.15});
+  document.querySelectorAll('.lb-card').forEach(c=>obs.observe(c));
+}
+
+// ── RENDER EVENTS ─────────────────────────────────────────────
+function pPlace(v){if(!v)return{ch:'',pts:''};const m=v.match(/^(.+?)\s*\((\d+)\)$/);return m?{ch:m[1].trim(),pts:m[2]}:{ch:v,pts:''};}
+function renderEvents(data){
+  function evRow(ev,isFrat){
+    const cls=isFrat?'f':'s',n=isFrat?5:4;
+    if(!ev.places||!ev.places.length)return`<div class="ev-row ${cls} upcoming"><div class="ev-name"><span class="ev-icon">${ev.icon}</span>${ev.name}</div><div class="upcoming-label">Upcoming</div></div>`;
+    const pcs=['p1','p2','p3','p4','p5'];
+    const pcells=Array.from({length:n},(_,i)=>{
+      const {ch,pts}=pPlace(ev.places[i]||'');
+      return ch?`<div class="place-cell ${pcs[i]}"><span class="place-ch">${ch}</span>${pts?`<span class="place-pts">+${pts}</span>`:''}</div>`:`<div class="place-cell"><span class="place-ch" style="color:var(--t3)">—</span></div>`;
+    }).join('');
+    return`<div class="ev-row ${cls}"><div class="ev-name"><span class="ev-icon">${ev.icon}</span>${ev.name}</div>${pcells}</div>`;
+  }
+  document.getElementById('sorEvents').innerHTML=data.sor.map(e=>evRow(e,false)).join('');
+  document.getElementById('fratEvents').innerHTML=data.frat.map(e=>evRow(e,true)).join('');
+}
+
+// ── SCHEDULE ─────────────────────────────────────────────────
+const SCHED=[
+  {day:'Monday',date:'March 30',js:new Date(2026,2,30),evs:[
+    {icon:'📦',name:'School Supplies Drive Begins',loc:'Fisher',time:'12:00 PM'},
+    {icon:'🍹',name:'Mocktails',loc:'Fisher/Heritage',time:'3:00–3:45 PM'},
+    {icon:'⚡',name:'Spike Ball',loc:'Fisher Lawn',time:'4:00–5:00 PM'},
+    {icon:'🎯',name:'Cornhole',loc:'Fisher Lawn',time:'5:00–6:00 PM'},
+  ]},
+  {day:'Tuesday',date:'March 31',js:new Date(2026,2,31),evs:[
+    {icon:'🏐',name:'Volleyball 6v6',loc:'MAC Gym',time:'1:00–5:00 PM'},
+  ]},
+  {day:'Wednesday',date:'April 1',js:new Date(2026,3,1),evs:[
+    {icon:'🧠',name:'Jeopardy',loc:'Heritage/Papitto',time:'9:30–10:30 AM'},
+    {icon:'🏀',name:'Basketball 5v5',loc:'MAC Gym (All Courts)',time:'1:00–6:00 PM'},
+  ]},
+  {day:'Thursday',date:'April 2',js:new Date(2026,3,2),evs:[
+    {icon:'💪',name:'Tug of War',loc:'Conaty',time:'1:00–2:00 PM'},
+    {icon:'🏃',name:'Relay Race',loc:'Conaty',time:'3:00–4:00 PM'},
+  ]},
+  {day:'Friday',date:'April 3',js:new Date(2026,3,3),evs:[
+    {icon:'📦',name:'School Supplies Deadline',loc:'Fisher',time:'12:00 PM'},
+    {icon:'🎤',name:'Lip Sync Contest',loc:'Jankikies',time:'4:00–6:00 PM'},
+  ]},
+];
+function renderSchedule(){
+  const today=new Date();today.setHours(0,0,0,0);
+  document.getElementById('schedDays').innerHTML=SCHED.map(d=>{
+    const dd=new Date(d.js);dd.setHours(0,0,0,0);
+    const isT=dd.getTime()===today.getTime(),isPast=dd<today;
+    const badge=isT?'<span class="badge-today">Today</span>':isPast?'<span class="badge-done">Complete</span>':'';
+    const evs=d.evs.map(e=>`<div class="sched-ev"><span class="sched-icon">${e.icon}</span><div><div class="sched-name">${e.name}</div><div class="sched-loc">${e.loc}</div></div><div class="sched-time">${e.time}</div></div>`).join('');
+    return`<div class="day-card${isT?' today':''} fi"><div class="day-top"><div><div class="day-name">${d.day}</div><div class="day-date">${d.date}, 2026</div></div>${badge}</div><div class="day-evs">${evs}</div></div>`;
+  }).join('');
+}
+
+// ── RULES ─────────────────────────────────────────────────────
+const RULES=[
+  {icon:'🍹',name:'Mocktails',meta:'Mon 3/30 · Fisher/Heritage · 3:00–3:45 PM',team:'2 participants per chapter',
+   rules:['ONE drink allowed per chapter','Judges score 1–10 for overall taste','Up to 2 bonus points awarded for presentation','Highest average judge score wins; judges determine 2nd–4th/5th'],
+   sor:['1st: 100','2nd: 75','3rd: 50','4th: 25'],frat:['1st: 100','2nd: 80','3rd: 60','4th: 40','5th: 20']},
+  {icon:'⚡',name:'Spike Ball',meta:'Mon 3/30 · Fisher Lawn · 4:00–5:00 PM',team:'2 players per chapter',
+   rules:['One player serves; opponents return within 3 touches','Point scored when team can\'t return in 3 touches or ball goes out','Serves must be from a standing position','No carrying, holding, or double hits by same player','Game to 21 — win by 2 rule'],
+   sor:['1st: 100','2nd: 75','3rd: 50','4th: 25'],frat:['1st: 100','2nd: 80','3rd: 60','4th: 40','5th: 20']},
+  {icon:'🎯',name:'Cornhole',meta:'Mon 3/30 · Fisher Lawn · 5:00–6:00 PM',team:'1 team of 2 per chapter',
+   rules:['Bracket format — coin flip determines who throws first','Win 2/3 matches in first round to advance','Games played to 11 points (NOT 21)','First to 11 in the final round wins the tournament','Standard cornhole rules apply'],
+   sor:['1st: 100','2nd: 75','3rd: 50','4th: 25'],frat:['1st: 100','2nd: 80','3rd: 60','4th: 40','5th: 20']},
+  {icon:'🏐',name:'Volleyball',meta:'Tue 3/31 · MAC Gym · 1:00–5:00 PM',team:'1 team of 12 per chapter (6 on court, 6 subs)',
+   rules:['Bracket format — best-of-three sets','Sets played to 25, win by 2; 3rd set to 15, win by 2','Max 3 hits per side; no consecutive hits by same player','Serve from behind the line — overhand or underhand','No touching net, catching/holding ball, or crossing under net','Teams rotate clockwise on serve win','1 timeout (60 sec) per set per team','Substitutions only during stoppages — notify referee','Referee decisions are final'],
+   sor:['1st: 100','2nd: 75','3rd: 50','4th: 25'],frat:['1st: 100','2nd: 80','3rd: 60','4th: 40','5th: 20']},
+  {icon:'🏀',name:'Basketball',meta:'Wed 4/1 · MAC Gym · 1:00–6:00 PM',team:'1 team of 10 per chapter (5 on court, 5 subs)',
+   rules:['Bracket format — subs can enter when ball is dead','5-minute warm-up, 20-minute games, 5-minute OT if tied','Limited foul calls due to time constraints — clean play required','Fouling players ejected and swapped with subs','Unsportsmanlike conduct = chapter point deductions'],
+   sor:['1st: 100','2nd: 75','3rd: 50','4th: 25'],frat:['1st: 100','2nd: 80','3rd: 60','4th: 40','5th: 20']},
+  {icon:'🧠',name:'Jeopardy',meta:'Wed 4/1 · Heritage/Papitto · 9:30–10:30 AM',team:'1 team of 4 per chapter — NO substitutions',
+   rules:['Traditional Jeopardy format — all answers in question form ("What is…?"','Questions increase in difficulty and point value','First picker determined by "What number am I thinking?" at start','All teams can buzz in on every question','Wait until host finishes reading before buzzing (raising hand)','Early buzz = locked out for that question','5 seconds to begin answering once recognized','Only one spokesperson delivers the final answer','Correct = earn full value; Incorrect = lose that value; no partial credit','Tie for 1st → sudden-death tiebreaker question','NO electronics — immediate disqualification if used','Audience may not shout answers or assist teams'],
+   sor:['1st: 100','2nd: 75','3rd: 50','4th: 25'],frat:['1st: 100','2nd: 80','3rd: 60','4th: 40','5th: 20']},
+  {icon:'💪',name:'Tug of War',meta:'Thu 4/2 · Conaty · 1:00–2:00 PM',team:'1 team of 5 per chapter',
+   rules:['Bracket format — single elimination','Bracket created by Greek Week Committee'],
+   sor:['1st: 100','2nd: 75','3rd: 50','4th: 25'],frat:['1st: 100','2nd: 80','3rd: 60','4th: 40','5th: 20']},
+  {icon:'🏃',name:'Relay Race',meta:'Thu 4/2 · Conaty · 3:00–4:00 PM',team:'1 team of 4 per chapter',
+   rules:['Teams race through a course designed by the Greek Week Committee','Whoever finishes first wins — 2nd/3rd/4th/5th by finish order'],
+   sor:['1st: 100','2nd: 75','3rd: 50','4th: 25'],frat:['1st: 100','2nd: 80','3rd: 60','4th: 40','5th: 20']},
+  {icon:'🎤',name:'Lip Sync',meta:'Fri 4/3 · Jankikies · 4:00–6:00 PM',team:'Full chapter performance',
+   rules:['Theme: Olympics — performance MUST incorporate Olympic movement','Max performance time: 5 minutes','Song repeats are allowed between chapters','Judged by a panel of non-Greek life judges on multiple categories','Highest overall score wins; NO swear words/drinking/drug use','Held IN-PERSON'],
+   sor:['1st: 350','2nd: 300','3rd: 250','4th: 200'],frat:['1st: 350','2nd: 300','3rd: 250','4th: 200','5th: 150']},
+  {icon:'📦',name:'School Supplies Drive',meta:'All Week · Fisher · Mon 3/30 12 PM – Fri 4/3 12 PM',team:'All chapter members',
+   rules:['All donations due to Greek Week Chairs by 12:00 PM Friday 4/3','Counted by packages/packs — NOT individual items','Example: 1 box of pencils = 1 donation regardless of quantity','Committee will table throughout the week — watch for tabling schedule email','Total donation count determines placement'],
+   sor:['1st: 200','2nd: 175','3rd: 150','4th: 125'],frat:['1st: 200','2nd: 175','3rd: 150','4th: 125','5th: 100']},
+];
+function renderRules(){
+  document.getElementById('rulesWrap').innerHTML=RULES.map((r,i)=>`
+  <div class="acc" id="acc${i}">
+    <div class="acc-hd" onclick="togAcc(${i})">
+      <div class="acc-left"><span class="acc-icon">${r.icon}</span><div><div class="acc-title">${r.name}</div><div class="acc-meta">${r.meta}</div></div></div>
+      <svg class="acc-chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="acc-body"><div class="acc-content">
+      <div class="r-sec">Team Size</div><p style="font-size:.82rem;color:var(--t2)">${r.team}</p>
+      <div class="r-sec">Rules</div><ul class="r-list">${r.rules.map(x=>`<li>${x}</li>`).join('')}</ul>
+      <div class="r-sec">Points</div>
+      <div class="pts-grid">
+        <div class="pts-block"><div class="pts-block-title">Sororities</div>${r.sor.map(p=>{const[pl,v]=p.split(': ');return`<div class="pts-row"><span class="pl">${pl}</span><span class="p">${v} pts</span></div>`;}).join('')}</div>
+        <div class="pts-block"><div class="pts-block-title">Fraternities</div>${r.frat.map(p=>{const[pl,v]=p.split(': ');return`<div class="pts-row"><span class="pl">${pl}</span><span class="p">${v} pts</span></div>`;}).join('')}</div>
+      </div>
+    </div></div>
+  </div>`).join('');
+}
+function togAcc(i){document.getElementById('acc'+i).classList.toggle('open');}
+
+// ── CHAPTERS ─────────────────────────────────────────────────
+const SORS=[
+  {abbr:'AOII',name:'Alpha Omicron Pi',   c1:'#B31B1B',c2:'#F0B0B0',lt:'ΑΟΠ'},
+  {abbr:'ASA', name:'Alpha Sigma Alpha',  c1:'#9B0032',c2:'#EEBBD0',lt:'ΑΣΑ'},
+  {abbr:'DZ',  name:'Delta Zeta',         c1:'#CC5500',c2:'#F9C4A8',lt:'ΔΖ'},
+  {abbr:'ΣΣΣ', name:'Sigma Sigma Sigma',  c1:'5B2D8E',c2:'#C9A8E8',lt:'ΣΣΣ'},
+];
+const FRATS=[
+  {abbr:'DX',  name:'Delta Chi',           c1:'#AA0000',c2:'#E8D080',lt:'ΔΧ'},
+  {abbr:'DKE', name:'Delta Kappa Epsilon', c1:'#0A2F6E',c2:'#D4AF37',lt:'ΔΚΕ'},
+  {abbr:'ΣΧ',  name:'Sigma Chi',           c1:'#002FA7',c2:'#C5A028',lt:'ΣΧ'},
+  {abbr:'TKE', name:'Tau Kappa Epsilon',   c1:'#8B0000',c2:'#D4AF37',lt:'ΤΚΕ'},
+  {abbr:'TEP', name:'Tau Epsilon Phi',     c1:'#1A237E',c2:'#90A4AE',lt:'ΤΕΦ'},
+];
+function makeCrest(c){
+  const id='g'+c.abbr.replace(/[^a-zA-Z0-9]/g,'');
+  const fs=c.lt.length>2?'14':'18';
+  return`<svg class="ch-crest" viewBox="0 0 80 88" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="${id}" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:${c.c1}"/><stop offset="100%" style="stop-color:${c.c1}bb"/></linearGradient></defs>
+  <path d="M40 4 L74 17 L74 50 Q74 74 40 86 Q6 74 6 50 L6 17 Z" fill="url(#${id})" stroke="${c.c2}" stroke-width="2.5"/>
+  <path d="M40 11 L67 22 L67 50 Q67 70 40 80 Q13 70 13 50 L13 22 Z" fill="none" stroke="${c.c2}" stroke-width="1" opacity="0.4"/>
+  <text x="40" y="52" text-anchor="middle" dominant-baseline="middle" font-family="serif" font-size="${fs}" font-weight="bold" fill="${c.c2}">${c.lt}</text>
+  </svg>`;
+}
+function renderChapters(){
+  document.getElementById('sorGrid').innerHTML=SORS.map(c=>`<div class="ch-card fi">${makeCrest(c)}<div class="ch-abbr">${c.abbr}</div><div class="ch-full">${c.name}</div></div>`).join('');
+  document.getElementById('fratGrid').innerHTML=FRATS.map(c=>`<div class="ch-card fi">${makeCrest(c)}<div class="ch-abbr">${c.abbr}</div><div class="ch-full">${c.name}</div></div>`).join('');
+}
+
+// ── FETCH + RENDER ────────────────────────────────────────────
+async function loadData(){
+  const btn=document.getElementById('refreshBtn');
+  btn.classList.add('spin');
+  try{
+    const [pr,er]=await Promise.all([fetch(SHEET_POINTS),fetch(SHEET_EVENTS)]);
+    if(!pr.ok||!er.ok)throw new Error();
+    const [pt,et]=await Promise.all([pr.text(),er.text()]);
+    renderSB(parsePoints(parseCSV(pt)));
+    renderEvents(parseEvents(parseCSV(et)));
+    document.getElementById('lastUpd').textContent='Last updated: '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+  }catch(e){
+    renderSB(FB_PTS);renderEvents(FB_EV);
+    document.getElementById('lastUpd').textContent='Using cached data';
+  }finally{btn.classList.remove('spin');}
+}
+function doRefresh(){document.querySelectorAll('[data-cnt]').forEach(el=>delete el._done);loadData();}
+
+// ── TABS ─────────────────────────────────────────────────────
+function switchTab(type,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById(type+'-panel').classList.add('on');
+}
+
+// ── SCROLL ANIMATIONS ─────────────────────────────────────────
+function setupFI(){
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');});},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
+}
+
+// ── NAV ───────────────────────────────────────────────────────
+function toggleNav(){document.getElementById('navLinks').classList.toggle('open');}
+function closeNav(){document.getElementById('navLinks').classList.remove('open');}
+
+// ── AUTO-REFRESH every 60s ────────────────────────────────────
+setInterval(doRefresh,60000);
+
+// ── INIT ─────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded',()=>{
+  renderSchedule();
+  renderRules();
+  renderChapters();
+  loadData();
+  setTimeout(setupFI,200);
+});
+</script>
+</body>
+</html>
