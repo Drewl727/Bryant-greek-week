@@ -194,14 +194,37 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
   .ch-grid.frat{grid-template-columns:repeat(3,1fr)}
 }
 @media(max-width:640px){
+  /* Nav */
   .nav-links{display:none}
   .hamburger{display:flex}
   .nav-links.open{display:flex;flex-direction:column;position:fixed;top:58px;left:0;right:0;background:rgba(9,9,15,0.97);padding:1rem;gap:.2rem;border-bottom:1px solid rgba(255,215,0,0.1)}
-  .ev-row.s,.ev-row.f{grid-template-columns:1fr 1fr;row-gap:.5rem}
-  .ev-row.s .ev-name,.ev-row.f .ev-name{grid-column:1/-1}
+
+  /* Scoreboard — make table scroll horizontally */
+  .lb-card{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .lb-table{min-width:320px}
+  .lb-table th,.lb-table td{padding:.6rem .55rem;font-size:.75rem}
+  .lb-table td:first-child{font-size:.9rem;width:1.8rem}
+  .lb-table td:nth-child(2){font-size:.78rem;max-width:110px}
+  .day-v{font-size:.75rem}
+  .tot{font-size:.8rem}
+  .r1 .tot{font-size:.85rem}
+
+  /* Event results — stack as cards */
   .ev-head.s,.ev-head.f{display:none}
+  .ev-row.s,.ev-row.f{grid-template-columns:1fr 1fr;row-gap:.45rem;padding:.8rem 1rem}
+  .ev-row.s .ev-name,.ev-row.f .ev-name{grid-column:1/-1;font-size:.82rem}
+  .place-cell{background:rgba(255,255,255,0.04);border-radius:6px;padding:.3rem .2rem}
+  .place-ch{font-size:.72rem}
+  .place-pts{font-size:.62rem}
+
+  /* Rules */
   .pts-grid{grid-template-columns:1fr}
+
+  /* Chapters */
   .ch-grid.sor,.ch-grid.frat{grid-template-columns:repeat(2,1fr)}
+
+  /* Section padding */
+  section{padding:3.5rem 1rem}
 }
 </style>
 </head>
