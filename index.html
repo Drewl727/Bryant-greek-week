@@ -221,6 +221,8 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
 .cd-info{display:flex;flex-direction:column;align-items:flex-start;gap:.1rem}
 .cd-name{font-size:.74rem;font-weight:600;color:var(--t1)}
 .cd-time{font-size:1.25rem;font-weight:800;color:var(--gold);font-variant-numeric:tabular-nums;letter-spacing:.02em;line-height:1}
+.cd-widget.cd-live{background:rgba(220,38,38,0.1);border-color:rgba(220,38,38,0.35)}
+.cd-widget.cd-live .cd-time{color:#f87171;animation:pulse 1.6s ease-in-out infinite}
 
 /* ── BAR CHART ── */
 .ch-bar-wrap{height:3px;background:rgba(255,255,255,0.07);border-radius:2px;margin-top:5px;overflow:hidden;min-width:50px}
@@ -384,7 +386,7 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
     </div>
     <p class="hero-dates"><b>March 30</b> &mdash; <b>April 3, 2026</b></p>
     <div class="cd-widget" id="cdWidget" style="display:none">
-      <span class="cd-label">&#9201; Next Up</span>
+      <span class="cd-label" id="cdLabel">&#9201; Next Up</span>
       <div class="cd-info">
         <span class="cd-name" id="cdName"></span>
         <span class="cd-time" id="cdTime"></span>
@@ -788,23 +790,35 @@ function showToast(msg){
 
 // ── COUNTDOWN ────────────────────────────────────────────────
 const CD_EVENTS=[
-  {name:'Mocktails',               dt:new Date(2026,2,30,15,0)},
-  {name:'Spike Ball',              dt:new Date(2026,2,30,16,0)},
-  {name:'Cornhole',                dt:new Date(2026,2,30,17,0)},
-  {name:'Volleyball',              dt:new Date(2026,2,31,13,0)},
-  {name:'Basketball',              dt:new Date(2026,3,1,13,0)},
-  {name:'Jeopardy',                dt:new Date(2026,3,1,21,30)},
-  {name:'Tug of War',              dt:new Date(2026,3,2,13,0)},
-  {name:'Relay Race',              dt:new Date(2026,3,2,15,0)},
-  {name:'School Supplies Deadline',dt:new Date(2026,3,3,12,0)},
-  {name:'Lip Sync',                dt:new Date(2026,3,3,16,0)},
+  {name:'Mocktails',               dt:new Date(2026,2,30,15,0),  end:new Date(2026,2,30,15,45)},
+  {name:'Spike Ball',              dt:new Date(2026,2,30,16,0),  end:new Date(2026,2,30,17,0)},
+  {name:'Cornhole',                dt:new Date(2026,2,30,17,0),  end:new Date(2026,2,30,18,0)},
+  {name:'Volleyball',              dt:new Date(2026,2,31,13,0),  end:new Date(2026,2,31,17,0)},
+  {name:'Basketball',              dt:new Date(2026,3,1,13,0),   end:new Date(2026,3,1,18,0)},
+  {name:'Jeopardy',                dt:new Date(2026,3,1,21,30),  end:new Date(2026,3,1,22,30)},
+  {name:'Tug of War',              dt:new Date(2026,3,2,13,0),   end:new Date(2026,3,2,14,0)},
+  {name:'Relay Race',              dt:new Date(2026,3,2,15,0),   end:new Date(2026,3,2,16,0)},
+  {name:'School Supplies Deadline',dt:new Date(2026,3,3,12,0),   end:new Date(2026,3,3,12,0)},
+  {name:'Lip Sync',                dt:new Date(2026,3,3,16,0),   end:new Date(2026,3,3,18,0)},
 ];
 function updateCountdown(){
   const now=new Date();
-  const next=CD_EVENTS.find(e=>e.dt>now);
   const w=document.getElementById('cdWidget');
+  const lbl=document.getElementById('cdLabel');
+  const active=CD_EVENTS.find(e=>now>=e.dt&&now<e.end);
+  if(active){
+    w.style.display='inline-flex';
+    w.classList.add('cd-live');
+    lbl.textContent='🔴 Now';
+    document.getElementById('cdName').textContent=active.name;
+    document.getElementById('cdTime').textContent='Underway';
+    return;
+  }
+  w.classList.remove('cd-live');
+  const next=CD_EVENTS.find(e=>e.dt>now);
   if(!next){w.style.display='none';return;}
   w.style.display='inline-flex';
+  lbl.textContent='⏱ Next Up';
   document.getElementById('cdName').textContent=next.name;
   const diff=next.dt-now;
   const h=Math.floor(diff/3600000);
