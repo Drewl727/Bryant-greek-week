@@ -303,7 +303,7 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
 <div class="toast" id="toast"></div>
 
 <!-- OFFICIAL NOTICE MODAL -->
-<div id="noticeOverlay">
+<div id="noticeOverlay" style="display:none">
   <div class="notice-card">
     <div class="notice-top">
       <span class="notice-badge">&#9888; Official Notice</span>
@@ -374,10 +374,10 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
       <div>
         <div class="sec-label">Live Standings</div>
         <h2 class="sec-title">Scoreboard</h2>
-        <p class="sec-sub">Pulled live from the official score sheet</p>
+        <p class="sec-sub">Updated by the Greek Week Committee</p>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:.35rem">
-        <div class="live-chip"><div class="live-dot"></div> Live</div>
+        <div class="live-chip">&#128197; Updated</div>
         <button class="share-btn" onclick="shareURL()">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>Share
         </button>
@@ -503,10 +503,6 @@ const FB_EV = {
     {name:'School Supplies',icon:'📦',places:[]},
   ]
 };
-
-const CNAMES = {Sigma:'Sigma Sigma Sigma',DZ:'Delta Zeta',AOII:'Alpha Omicron Pi',ASA:'Alpha Sigma Alpha',DKE:'Delta Kappa Epsilon',TKE:'Tau Kappa Epsilon',DX:'Delta Chi',EX:'Sigma Chi',TEP:'Tau Epsilon Phi'};
-const EV_ORDER = ['Mocktails','Spike Ball','Cornhole','Volleyball','Basketball','Jeopardy','Tug of War','Relay Race','Lip Sync','School Supplies'];
-const EV_ICONS = {Mocktails:'🍹','Spike Ball':'⚡',Cornhole:'🎯',Volleyball:'🏐',Basketball:'🏀',Jeopardy:'🧠','Tug of War':'💪','Relay Race':'🏃','Lip Sync':'🎤','School Supplies':'📦'};
 
 
 // ── RENDER SCOREBOARD ─────────────────────────────────────────
@@ -783,8 +779,9 @@ setInterval(updateCountdown,1000);
 // ── INIT ─────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded',()=>{
   // Official notice — show once per session
-  if(sessionStorage.getItem('noticeSeen')){
-    document.getElementById('noticeOverlay').classList.add('hidden');
+  if(!sessionStorage.getItem('noticeSeen')){
+    const o=document.getElementById('noticeOverlay');
+    o.style.display='flex';
   }
   // Restore dismissed banner
   if(localStorage.getItem('bannerDone')){
