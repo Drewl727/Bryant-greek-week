@@ -112,6 +112,7 @@ section{padding:5rem 1.5rem}
 .r1 .tot{color:var(--gold);font-weight:900;font-size:.95rem}
 .day-v{color:var(--t2);font-size:.82rem}
 .tot{font-weight:800}
+.tie-tag{font-size:.55rem;font-weight:800;letter-spacing:.06em;color:var(--gold);background:rgba(255,215,0,0.12);border:1px solid rgba(255,215,0,0.25);border-radius:4px;padding:.05rem .3rem;margin-left:.3rem;vertical-align:middle}
 .skel{background:linear-gradient(90deg,rgba(255,255,255,0.04) 25%,rgba(255,255,255,0.09) 50%,rgba(255,255,255,0.04) 75%);background-size:200% 100%;animation:skel 1.5s infinite;border-radius:4px;height:14px;display:inline-block;width:80%}
 @keyframes skel{0%{background-position:200% 0}100%{background-position:-200% 0}}
 .last-upd{font-size:.68rem;color:var(--t3);margin-top:.9rem;text-align:center}
@@ -540,11 +541,15 @@ function renderSB(data){
     const maxTot=rows.length?(rows[0].total||1):1;
     let html=`<div class="lb-card fi"><div class="lb-head">${icon} ${title}</div><div class="lb-scroll">
     <table class="lb-table"><thead><tr><th></th><th>Chapter</th><th>Points</th></tr></thead><tbody>`;
+    let prevRank=1;
     rows.forEach((r,i)=>{
-      const rank=i+1,badge=rank===1?'🥇':rank===2?'🥈':rank===3?'🥉':rank;
+      const rank=i===0?1:(r.total===rows[i-1].total?prevRank:i+1);
+      prevRank=rank;
+      const badge=rank===1?'🥇':rank===2?'🥈':rank===3?'🥉':rank;
       const tot=r.total||0;
       const pct=Math.round((tot/maxTot)*100);
-      html+=`<tr class="r${rank}"><td>${badge}</td><td><div>${r.name||r.abbr}</div><div class="ch-bar-wrap"><div class="ch-bar" data-bar="${pct}%"></div></div></td><td class="tot" data-cnt="${tot}">0</td></tr>`;
+      const tied=i>0&&r.total===rows[i-1].total;
+      html+=`<tr class="r${rank}"><td>${badge}${tied?'<span class="tie-tag">T</span>':''}</td><td><div>${r.name||r.abbr}</div><div class="ch-bar-wrap"><div class="ch-bar" data-bar="${pct}%"></div></div></td><td class="tot" data-cnt="${tot}">0</td></tr>`;
     });
     html+=`</tbody></table></div></div>`;return html;
   }
