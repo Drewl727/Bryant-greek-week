@@ -227,6 +227,26 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
 .ch-bar{height:100%;background:linear-gradient(90deg,rgba(255,215,0,.65),rgba(255,215,0,.25));border-radius:2px;width:0%;transition:width 1.2s cubic-bezier(.34,1.56,.64,1)}
 .r1 .ch-bar{background:linear-gradient(90deg,#FFD700,#FFF17688)}
 
+/* ── OFFICIAL NOTICE MODAL ── */
+#noticeOverlay{position:fixed;inset:0;background:rgba(0,0,0,0.72);z-index:500;display:flex;align-items:center;justify-content:center;padding:1.5rem;backdrop-filter:blur(4px);animation:fadeIn .3s ease}
+#noticeOverlay.hidden{display:none}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.notice-card{background:#0d0d1c;border:1px solid rgba(255,215,0,0.35);border-radius:16px;max-width:480px;width:100%;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.7);animation:slideUp .35s cubic-bezier(.34,1.56,.64,1)}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.notice-top{background:rgba(220,38,38,0.12);border-bottom:1px solid rgba(220,38,38,0.25);padding:1rem 1.4rem;display:flex;align-items:center;gap:.75rem}
+.notice-badge{background:#dc2626;color:#fff;font-size:.58rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;padding:.28rem .75rem;border-radius:50px;white-space:nowrap;flex-shrink:0}
+.notice-label{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(220,38,38,0.9)}
+.notice-body{padding:1.5rem 1.4rem}
+.notice-title{font-size:1.05rem;font-weight:800;color:var(--t1);margin-bottom:.9rem;line-height:1.3}
+.notice-detail{background:rgba(255,215,0,0.045);border:1px solid rgba(255,215,0,0.12);border-radius:10px;padding:.9rem 1.1rem;margin-bottom:1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.notice-org{font-size:.88rem;font-weight:700;color:var(--t1)}
+.notice-pts{font-size:1.4rem;font-weight:900;color:#dc2626;letter-spacing:-.01em}
+.notice-reason{font-size:.8rem;color:var(--t2);line-height:1.55;margin-bottom:1.3rem}
+.notice-footer{display:flex;align-items:center;justify-content:space-between;gap:1rem;border-top:1px solid rgba(255,255,255,0.06);padding-top:1rem}
+.notice-sig{font-size:.65rem;color:var(--t3);letter-spacing:.06em}
+.notice-close{background:var(--gold);color:var(--black);border:none;font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:800;letter-spacing:.06em;padding:.5rem 1.2rem;border-radius:8px;cursor:pointer;transition:opacity .2s}
+.notice-close:hover{opacity:.85}
+
 /* ── SHARE BUTTON & TOAST ── */
 .share-btn{display:flex;align-items:center;gap:.45rem;background:transparent;border:1px solid rgba(255,215,0,0.18);color:var(--t2);padding:.35rem .85rem;border-radius:50px;font-size:.7rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Outfit',sans-serif;letter-spacing:.06em;margin-top:.4rem}
 .share-btn:hover{border-color:var(--gold);color:var(--gold)}
@@ -281,6 +301,28 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
 
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
+
+<!-- OFFICIAL NOTICE MODAL -->
+<div id="noticeOverlay">
+  <div class="notice-card">
+    <div class="notice-top">
+      <span class="notice-badge">&#9888; Official Notice</span>
+      <span class="notice-label">Greek Week Committee</span>
+    </div>
+    <div class="notice-body">
+      <div class="notice-title">Point Deduction Issued</div>
+      <div class="notice-detail">
+        <span class="notice-org">Tau Kappa Epsilon</span>
+        <span class="notice-pts">&minus;40 pts</span>
+      </div>
+      <p class="notice-reason">Following a review by the Greek Week Committee, Tau Kappa Epsilon has been issued a <strong>40-point deduction</strong> for unsportsmanlike conduct. This deduction has been applied to the official scoreboard. All chapters are reminded that sportsmanship is a core value of Greek Week.</p>
+      <div class="notice-footer">
+        <span class="notice-sig">Bryant Greek Week Committee &middot; April 2026</span>
+        <button class="notice-close" onclick="dismissNotice()">Acknowledged</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -669,6 +711,12 @@ function setupFI(){
 function toggleNav(){document.getElementById('navLinks').classList.toggle('open');}
 function closeNav(){document.getElementById('navLinks').classList.remove('open');}
 
+// ── OFFICIAL NOTICE ──────────────────────────────────────────
+function dismissNotice(){
+  document.getElementById('noticeOverlay').classList.add('hidden');
+  sessionStorage.setItem('noticeSeen','1');
+}
+
 // ── CONDUCT BANNER ───────────────────────────────────────────
 function dismissBanner(){
   const b=document.getElementById('conductBanner');
@@ -734,6 +782,10 @@ setInterval(updateCountdown,1000);
 
 // ── INIT ─────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded',()=>{
+  // Official notice — show once per session
+  if(sessionStorage.getItem('noticeSeen')){
+    document.getElementById('noticeOverlay').classList.add('hidden');
+  }
   // Restore dismissed banner
   if(localStorage.getItem('bannerDone')){
     const b=document.getElementById('conductBanner');
