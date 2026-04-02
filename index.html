@@ -246,6 +246,11 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
 .notice-sig{font-size:.65rem;color:var(--t3);letter-spacing:.06em}
 .notice-close{background:var(--gold);color:var(--black);border:none;font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:800;letter-spacing:.06em;padding:.5rem 1.2rem;border-radius:8px;cursor:pointer;transition:opacity .2s}
 .notice-close:hover{opacity:.85}
+.notice-top-gold{background:rgba(255,215,0,0.08);border-bottom:1px solid rgba(255,215,0,0.22)}
+.notice-badge-gold{background:rgba(255,215,0,0.15);color:var(--gold);border:1px solid rgba(255,215,0,0.3)}
+.notice-label-gold{color:rgba(255,215,0,0.75)}
+.notice-rules-list{display:flex;flex-direction:column;gap:.65rem;margin-bottom:1.3rem}
+.notice-rule-item{font-size:.8rem;color:var(--t2);line-height:1.55;padding:.6rem .8rem;background:rgba(255,255,255,0.03);border-radius:8px;border-left:2px solid rgba(255,215,0,0.25)}
 
 /* ── SHARE BUTTON & TOAST ── */
 .share-btn{display:flex;align-items:center;gap:.45rem;background:transparent;border:1px solid rgba(255,215,0,0.18);color:var(--t2);padding:.35rem .85rem;border-radius:50px;font-size:.7rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Outfit',sans-serif;letter-spacing:.06em;margin-top:.4rem}
@@ -302,8 +307,31 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<!-- OFFICIAL NOTICE MODAL -->
-<div id="noticeOverlay" style="display:none">
+<!-- OFFICIAL NOTICE MODAL — JP Statement -->
+<div id="noticeJP" style="display:none">
+  <div class="notice-card">
+    <div class="notice-top notice-top-gold">
+      <span class="notice-badge notice-badge-gold">&#128196; Official Statement</span>
+      <span class="notice-label notice-label-gold">JP Colasacco &middot; IFC &amp; Panhel Exec</span>
+    </div>
+    <div class="notice-body">
+      <div class="notice-title">Message to All Chapters</div>
+      <div class="notice-rules-list">
+        <div class="notice-rule-item">&#128683; <strong>Zero tolerance for alcohol</strong> in Fisher, Janikies, Conaty, and all major campus spaces &mdash; violations affect the entire chapter and will be handled as a campus conduct matter.</div>
+        <div class="notice-rule-item">&#128245; <strong>Do not contact</strong> IFC Exec, Panhel Exec, or JP to excuse or reconcile member behavior during events.</div>
+        <div class="notice-rule-item">&#9999;&#65039; All chapter presidents <strong>signed and agreed</strong> to the Greek Week rulebook. These rules are non-negotiable and strictly enforced.</div>
+        <div class="notice-rule-item">&#127942; Compete with <strong>intensity, respect, accountability, and class</strong>. Any further issues will be addressed promptly and firmly.</div>
+      </div>
+      <div class="notice-footer">
+        <span class="notice-sig">JP Colasacco &middot; IFC &amp; Panhel Exec &middot; April 2026</span>
+        <button class="notice-close" onclick="dismissNoticeJP()">Acknowledged</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OFFICIAL NOTICE MODAL — TKE Deduction -->
+<div id="noticeTKE" style="display:none">
   <div class="notice-card">
     <div class="notice-top">
       <span class="notice-badge">&#9888; Official Notice</span>
@@ -318,7 +346,7 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
       <p class="notice-reason">Following a review by the Greek Week Committee, Tau Kappa Epsilon has been issued a <strong>40-point deduction</strong> for unsportsmanlike conduct. This deduction has been applied to the official scoreboard. All chapters are reminded that sportsmanship is a core value of Greek Week.</p>
       <div class="notice-footer">
         <span class="notice-sig">Bryant Greek Week Committee &middot; April 2026</span>
-        <button class="notice-close" onclick="dismissNotice()">Acknowledged</button>
+        <button class="notice-close" onclick="dismissNoticeTKE()">Acknowledged</button>
       </div>
     </div>
   </div>
@@ -707,10 +735,22 @@ function setupFI(){
 function toggleNav(){document.getElementById('navLinks').classList.toggle('open');}
 function closeNav(){document.getElementById('navLinks').classList.remove('open');}
 
-// ── OFFICIAL NOTICE ──────────────────────────────────────────
-function dismissNotice(){
-  document.getElementById('noticeOverlay').classList.add('hidden');
-  sessionStorage.setItem('noticeSeen','1');
+// ── OFFICIAL NOTICES ─────────────────────────────────────────
+function showNextNotice(){
+  if(!sessionStorage.getItem('noticeJPSeen')){
+    document.getElementById('noticeJP').style.display='flex';
+  } else if(!sessionStorage.getItem('noticeTKESeen')){
+    document.getElementById('noticeTKE').style.display='flex';
+  }
+}
+function dismissNoticeJP(){
+  document.getElementById('noticeJP').style.display='none';
+  sessionStorage.setItem('noticeJPSeen','1');
+  showNextNotice();
+}
+function dismissNoticeTKE(){
+  document.getElementById('noticeTKE').style.display='none';
+  sessionStorage.setItem('noticeTKESeen','1');
 }
 
 // ── CONDUCT BANNER ───────────────────────────────────────────
@@ -778,11 +818,8 @@ setInterval(updateCountdown,1000);
 
 // ── INIT ─────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded',()=>{
-  // Official notice — show once per session
-  if(!sessionStorage.getItem('noticeSeen')){
-    const o=document.getElementById('noticeOverlay');
-    o.style.display='flex';
-  }
+  // Official notices — show in sequence, once per session
+  showNextNotice();
   // Restore dismissed banner
   if(localStorage.getItem('bannerDone')){
     const b=document.getElementById('conductBanner');
