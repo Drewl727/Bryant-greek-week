@@ -737,6 +737,7 @@ function closeNav(){document.getElementById('navLinks').classList.remove('open')
 
 // ── OFFICIAL NOTICES ─────────────────────────────────────────
 function showNextNotice(){
+  if(new Date()>new Date(2026,3,3))return; // expire after Apr 2
   if(!sessionStorage.getItem('noticeJPSeen')){
     document.getElementById('noticeJP').style.display='flex';
   } else if(!sessionStorage.getItem('noticeTKESeen')){
