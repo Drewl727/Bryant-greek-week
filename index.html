@@ -349,27 +349,6 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
   </div>
 </div>
 
-<!-- OFFICIAL NOTICE MODAL — TKE Deduction -->
-<div id="noticeTKE" class="notice-overlay" style="display:none">
-  <div class="notice-card">
-    <div class="notice-top">
-      <span class="notice-badge">&#9888; Official Notice</span>
-      <span class="notice-label">Greek Week Committee</span>
-    </div>
-    <div class="notice-body">
-      <div class="notice-title">Point Deduction Issued</div>
-      <div class="notice-detail">
-        <span class="notice-org">Tau Kappa Epsilon</span>
-        <span class="notice-pts">&minus;40 pts</span>
-      </div>
-      <p class="notice-reason">Following a review by the Greek Week Committee, Tau Kappa Epsilon has been issued a <strong>40-point deduction</strong> for unsportsmanlike conduct. This deduction has been applied to the official scoreboard. All chapters are reminded that sportsmanship is a core value of Greek Week.</p>
-      <div class="notice-footer">
-        <span class="notice-sig">Bryant Greek Week Committee &middot; April 2026</span>
-        <button class="notice-close" onclick="dismissNoticeTKE()">Acknowledged</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- NAV -->
 <nav>
@@ -784,18 +763,11 @@ function showNextNotice(){
   if(new Date()>new Date(2026,3,3))return; // expire after Apr 2
   if(!sessionStorage.getItem('noticeJPSeen')){
     document.getElementById('noticeJP').style.display='flex';
-  } else if(!sessionStorage.getItem('noticeTKESeen')){
-    document.getElementById('noticeTKE').style.display='flex';
   }
 }
 function dismissNoticeJP(){
   document.getElementById('noticeJP').style.display='none';
   sessionStorage.setItem('noticeJPSeen','1');
-  showNextNotice();
-}
-function dismissNoticeTKE(){
-  document.getElementById('noticeTKE').style.display='none';
-  sessionStorage.setItem('noticeTKESeen','1');
 }
 
 // ── CONDUCT BANNER ───────────────────────────────────────────
