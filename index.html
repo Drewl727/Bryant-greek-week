@@ -228,10 +228,9 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
 .r1 .ch-bar{background:linear-gradient(90deg,#FFD700,#FFF17688)}
 
 /* ── OFFICIAL NOTICE MODAL ── */
-#noticeOverlay{position:fixed;inset:0;background:rgba(0,0,0,0.72);z-index:500;display:flex;align-items:center;justify-content:center;padding:1.5rem;backdrop-filter:blur(4px);animation:fadeIn .3s ease}
-#noticeOverlay.hidden{display:none}
+.notice-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:500;display:flex;align-items:center;justify-content:center;padding:1.25rem;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);animation:fadeIn .3s ease;overflow-y:auto}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.notice-card{background:#0d0d1c;border:1px solid rgba(255,215,0,0.35);border-radius:16px;max-width:480px;width:100%;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.7);animation:slideUp .35s cubic-bezier(.34,1.56,.64,1)}
+.notice-card{background:#0d0d1c;border:1px solid rgba(255,215,0,0.35);border-radius:16px;max-width:460px;width:100%;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.7);animation:slideUp .35s cubic-bezier(.34,1.56,.64,1);max-height:90vh;overflow-y:auto}
 @keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 .notice-top{background:rgba(220,38,38,0.12);border-bottom:1px solid rgba(220,38,38,0.25);padding:1rem 1.4rem;display:flex;align-items:center;gap:.75rem}
 .notice-badge{background:#dc2626;color:#fff;font-size:.58rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;padding:.28rem .75rem;border-radius:50px;white-space:nowrap;flex-shrink:0}
@@ -308,7 +307,7 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
 <div class="toast" id="toast"></div>
 
 <!-- OFFICIAL NOTICE MODAL — JP Statement -->
-<div id="noticeJP" style="display:none">
+<div id="noticeJP" class="notice-overlay" style="display:none">
   <div class="notice-card">
     <div class="notice-top notice-top-gold">
       <span class="notice-badge notice-badge-gold">&#128196; Official Statement</span>
@@ -331,7 +330,7 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
 </div>
 
 <!-- OFFICIAL NOTICE MODAL — TKE Deduction -->
-<div id="noticeTKE" style="display:none">
+<div id="noticeTKE" class="notice-overlay" style="display:none">
   <div class="notice-card">
     <div class="notice-top">
       <span class="notice-badge">&#9888; Official Notice</span>
