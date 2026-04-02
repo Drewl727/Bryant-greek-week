@@ -403,13 +403,7 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
       <div class="ring"></div><div class="ring"></div>
     </div>
     <p class="hero-dates"><b>March 30</b> &mdash; <b>April 3, 2026</b></p>
-    <div class="cd-widget" id="cdWidget" style="display:none">
-      <span class="cd-label" id="cdLabel">&#9201; Next Up</span>
-      <div class="cd-info">
-        <span class="cd-name" id="cdName"></span>
-        <span class="cd-time" id="cdTime"></span>
-      </div>
-    </div>
+    <div id="cdContainer" style="display:none;margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center"></div>
   </div>
   <div class="hero-scroll">Scroll</div>
 </section>
@@ -511,17 +505,17 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
 // ── SCORES & EVENTS DATA (update manually) ───────────────────
 const FB_PTS = {
   sororities:[
-    {abbr:'DZ',   name:'Delta Zeta',          total:580},
-    {abbr:'Sigma',name:'Sigma Sigma Sigma',    total:580},
-    {abbr:'AOII', name:'Alpha Omicron Pi',     total:505},
-    {abbr:'ASA',  name:'Alpha Sigma Alpha',    total:445},
+    {abbr:'Sigma',name:'Sigma Sigma Sigma',    total:590},
+    {abbr:'DZ',   name:'Delta Zeta',          total:590},
+    {abbr:'AOII', name:'Alpha Omicron Pi',     total:515},
+    {abbr:'ASA',  name:'Alpha Sigma Alpha',    total:455},
   ],
   fraternities:[
-    {abbr:'DKE',  name:'Delta Kappa Epsilon',  total:685},
+    {abbr:'DKE',  name:'Delta Kappa Epsilon',  total:695},
     {abbr:'TKE',  name:'Tau Kappa Epsilon',    total:585},
-    {abbr:'EX',   name:'Sigma Chi',            total:500},
-    {abbr:'DX',   name:'Delta Chi',            total:450},
-    {abbr:'TEP',  name:'Tau Epsilon Phi',      total:410},
+    {abbr:'EX',   name:'Sigma Chi',            total:520},
+    {abbr:'DX',   name:'Delta Chi',            total:460},
+    {abbr:'TEP',  name:'Tau Epsilon Phi',      total:420},
   ]
 };
 
@@ -852,29 +846,20 @@ const CD_EVENTS=[
 ];
 function updateCountdown(){
   const now=new Date();
-  const w=document.getElementById('cdWidget');
-  const lbl=document.getElementById('cdLabel');
+  const con=document.getElementById('cdContainer');
   const active=CD_EVENTS.find(e=>now>=e.dt&&now<e.end);
-  if(active){
-    w.style.display='inline-flex';
-    w.classList.add('cd-live');
-    lbl.textContent='🔴 Now';
-    document.getElementById('cdName').textContent=active.name;
-    document.getElementById('cdTime').textContent='Underway';
-    return;
+  const upcoming=CD_EVENTS.filter(e=>e.dt>now);
+  if(!active&&!upcoming.length){con.style.display='none';return;}
+  con.style.display='flex';
+  function timeStr(dt){
+    const diff=dt-now;
+    const h=Math.floor(diff/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
+    return h>0?`${h}h ${String(m).padStart(2,'0')}m`:`${m}m ${String(s).padStart(2,'0')}s`;
   }
-  w.classList.remove('cd-live');
-  const next=CD_EVENTS.find(e=>e.dt>now);
-  if(!next){w.style.display='none';return;}
-  w.style.display='inline-flex';
-  lbl.textContent='⏱ Next Up';
-  document.getElementById('cdName').textContent=next.name;
-  const diff=next.dt-now;
-  const h=Math.floor(diff/3600000);
-  const m=Math.floor((diff%3600000)/60000);
-  const s=Math.floor((diff%60000)/1000);
-  document.getElementById('cdTime').textContent=
-    h>0?`${h}h ${String(m).padStart(2,'0')}m`:`${m}m ${String(s).padStart(2,'0')}s`;
+  let html='';
+  if(active)html+=`<div class="cd-widget cd-live"><span class="cd-label">&#128308; Now</span><div class="cd-info"><span class="cd-name">${active.name}</span><span class="cd-time">Underway</span></div></div>`;
+  upcoming.forEach(ev=>{html+=`<div class="cd-widget"><span class="cd-label">&#9201; Upcoming</span><div class="cd-info"><span class="cd-name">${ev.name}</span><span class="cd-time">${timeStr(ev.dt)}</span></div></div>`;});
+  con.innerHTML=html;
 }
 
 setInterval(updateCountdown,1000);
