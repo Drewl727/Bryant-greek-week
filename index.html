@@ -320,7 +320,47 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
 
   /* Section padding */
   section{padding:3.5rem 1rem}
+
+  /* Simulator mobile */
+  .sim-panels{grid-template-columns:1fr}
+  .sim-right{position:static}
+  .sim-standings-wrap{position:static}
 }
+</style>
+
+<style>
+/* ── WHAT IF SIMULATOR ── */
+#simulator{background:linear-gradient(180deg,#0a0a14 0%,#0d0d1c 100%)}
+.sim-tabs{display:flex;gap:.5rem;margin-bottom:1.8rem;background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.12);border-radius:12px;padding:.3rem}
+.sim-tab{flex:1;padding:.6rem 1rem;border-radius:9px;border:none;background:transparent;color:var(--t2);font-size:.82rem;font-weight:600;cursor:pointer;transition:background .2s,color .2s;letter-spacing:.02em}
+.sim-tab.active{background:rgba(255,215,0,0.15);color:var(--gold)}
+.sim-panels{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start}
+.sim-ev-block{background:rgba(255,255,255,0.03);border:1px solid rgba(255,215,0,0.1);border-radius:14px;padding:1.2rem;margin-bottom:1rem}
+.sim-ev-title{font-size:.88rem;font-weight:700;color:var(--t1);margin-bottom:.25rem}
+.sim-ev-sub{font-size:.68rem;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.9rem}
+.sim-list{display:flex;flex-direction:column;gap:.4rem}
+.sim-item{display:flex;align-items:center;gap:.7rem;background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.13);border-radius:9px;padding:.55rem .9rem;cursor:grab;user-select:none;transition:background .15s,transform .15s,box-shadow .15s}
+.sim-item:active{cursor:grabbing}
+.sim-item.dragging{opacity:.4;transform:scale(.97)}
+.sim-item.drag-over{background:rgba(255,215,0,0.14);border-color:rgba(255,215,0,0.4)}
+.sim-rank{font-size:1rem;width:1.4rem;text-align:center;flex-shrink:0}
+.sim-ch{flex:1;font-size:.82rem;font-weight:600;color:var(--t1)}
+.sim-pts{font-size:.75rem;font-weight:700;color:var(--gold);background:rgba(255,215,0,0.1);padding:.15rem .45rem;border-radius:5px}
+.sim-drag-hint{font-size:.63rem;color:var(--t3);margin-top:.5rem;text-align:center}
+.sim-right{}
+.sim-standings-wrap{background:rgba(255,255,255,0.03);border:1px solid rgba(255,215,0,0.12);border-radius:14px;padding:1.2rem;position:sticky;top:90px}
+.sim-stand-title{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid rgba(255,215,0,0.12)}
+.sim-row{display:flex;align-items:center;gap:.8rem;padding:.55rem .2rem;border-radius:8px;transition:background .2s}
+.sim-row-1st{background:rgba(255,215,0,0.07);border-radius:8px;padding:.55rem .6rem}
+.sim-badge{font-size:.9rem;width:1.6rem;text-align:center;flex-shrink:0}
+.sim-row-info{flex:1;min-width:0}
+.sim-row-name{font-size:.8rem;font-weight:600;color:var(--t1);margin-bottom:.3rem}
+.sim-bar-wrap{height:4px;background:rgba(255,255,255,0.06);border-radius:99px;overflow:hidden}
+.sim-bar{height:100%;background:linear-gradient(90deg,var(--gold),#ffe680);border-radius:99px;transition:width .4s ease}
+.sim-row-pts{text-align:right;flex-shrink:0}
+.sim-total{display:block;font-size:.9rem;font-weight:800;color:var(--t1);font-variant-numeric:tabular-nums}
+.sim-gain{display:block;font-size:.68rem;color:#4ade80;font-weight:600}
+.sim-note{font-size:.7rem;color:var(--t3);margin-top:1rem;text-align:center;line-height:1.5}
 </style>
 </head>
 <body>
@@ -360,6 +400,7 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
     <li><a href="#events" onclick="closeNav()">Events</a></li>
     <li><a href="#schedule" onclick="closeNav()">Schedule</a></li>
     <li><a href="#rules" onclick="closeNav()">Rules</a></li>
+    <li><a href="#simulator" onclick="closeNav()">What If?</a></li>
     <li><a href="#chapters" onclick="closeNav()">Chapters</a></li>
   </ul>
   <div class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
@@ -438,6 +479,20 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
       <div class="ev-head f"><span>Event</span><span>&#129351; 1st</span><span>&#129352; 2nd</span><span>&#129353; 3rd</span><span>4th</span><span>5th</span></div>
       <div class="ev-list" id="fratEvents"></div>
     </div>
+  </div>
+</section>
+
+<!-- WHAT IF SIMULATOR -->
+<section id="simulator">
+  <div class="container">
+    <div class="sec-tag">Interactive</div>
+    <h2 class="sec-title">What If? Scenario Builder</h2>
+    <p class="sec-sub">Drag chapters into finishing order for each remaining event &mdash; see projected final standings instantly</p>
+    <div class="sim-tabs">
+      <button class="sim-tab active" onclick="simTab('sor')">&#127800; Sororities</button>
+      <button class="sim-tab" onclick="simTab('frat')">&#127963; Fraternities</button>
+    </div>
+    <div class="sim-panels" id="simPanels"></div>
   </div>
 </section>
 
@@ -841,6 +896,181 @@ function updateCountdown(){
 
 setInterval(updateCountdown,1000);
 
+// ── WHAT IF SIMULATOR ─────────────────────────────────────────
+const SIM={
+  sor:{
+    chapters:['Sigma','DZ','AOII','ASA'],
+    names:{Sigma:'Sigma Sigma Sigma',DZ:'Delta Zeta',AOII:'Alpha Omicron Pi',ASA:'Alpha Sigma Alpha'},
+    current:{Sigma:590,DZ:590,AOII:515,ASA:455},
+    events:{
+      'Lip Sync':      {1:350,2:300,3:250,4:200},
+      'School Supplies':{1:200,2:175,3:150,4:125},
+    },
+    orders:{
+      'Lip Sync':       ['Sigma','DZ','AOII','ASA'],
+      'School Supplies':['Sigma','DZ','AOII','ASA'],
+    }
+  },
+  frat:{
+    chapters:['DKE','TKE','EX','DX','TEP'],
+    names:{DKE:'Delta Kappa Epsilon',TKE:'Tau Kappa Epsilon',EX:'Sigma Chi',DX:'Delta Chi',TEP:'Tau Epsilon Phi'},
+    current:{DKE:695,TKE:585,EX:510,DX:460,TEP:420},
+    events:{
+      'Lip Sync':      {1:350,2:300,3:250,4:200,5:150},
+      'School Supplies':{1:200,2:175,3:150,4:125,5:100},
+    },
+    orders:{
+      'Lip Sync':       ['DKE','TKE','EX','DX','TEP'],
+      'School Supplies':['DKE','TKE','EX','DX','TEP'],
+    }
+  }
+};
+let simDiv='sor';
+let simDragEl=null;
+const SIM_MEDALS=['🥇','🥈','🥉','4️⃣','5️⃣'];
+const SIM_EV_ICONS={'Lip Sync':'🎤','School Supplies':'📦'};
+
+function simTab(div){
+  simDiv=div;
+  document.querySelectorAll('.sim-tab').forEach((t,i)=>t.classList.toggle('active',(i===0&&div==='sor')||(i===1&&div==='frat')));
+  renderSim();
+}
+
+function simStandingsHTML(){
+  const d=SIM[simDiv];
+  const evNames=Object.keys(d.events);
+  const totals={};
+  d.chapters.forEach(ch=>{totals[ch]=d.current[ch];});
+  evNames.forEach(ev=>{d.orders[ev].forEach((ch,i)=>{totals[ch]+=d.events[ev][i+1];});});
+  const sorted=d.chapters.slice().sort((a,b)=>totals[b]-totals[a]);
+  const maxPts=totals[sorted[0]]||1;
+  let html='<div class="sim-stand-title">&#128202; Projected Final Standings</div>';
+  sorted.forEach((ch,i)=>{
+    const pts=totals[ch];
+    const base=d.current[ch];
+    const gain=pts-base;
+    const pct=Math.round((pts/maxPts)*100);
+    const tied=i>0&&totals[ch]===totals[sorted[i-1]];
+    const badge=i<3?SIM_MEDALS[i]:(i+1);
+    html+=`<div class="sim-row${i===0?' sim-row-1st':''}">
+      <span class="sim-badge">${badge}${tied?'<span class="tie-tag">T</span>':''}</span>
+      <div class="sim-row-info">
+        <div class="sim-row-name">${ch}</div>
+        <div class="sim-bar-wrap"><div class="sim-bar" style="width:${pct}%"></div></div>
+      </div>
+      <div class="sim-row-pts"><span class="sim-total">${pts}</span><span class="sim-gain">+${gain}</span></div>
+    </div>`;
+  });
+  html+='<p class="sim-note">Based on current scores + your selected outcomes</p>';
+  return html;
+}
+
+function renderSim(){
+  const d=SIM[simDiv];
+  const evNames=Object.keys(d.events);
+  let leftHTML='<div>';
+  evNames.forEach(evName=>{
+    leftHTML+=`<div class="sim-ev-block">
+      <div class="sim-ev-title">${SIM_EV_ICONS[evName]} ${evName}</div>
+      <div class="sim-ev-sub">Drag to reorder finishing positions</div>
+      <div class="sim-list" id="simList_${evName.replace(' ','_')}">`;
+    d.orders[evName].forEach((ch,i)=>{
+      const pts=d.events[evName][i+1];
+      leftHTML+=`<div class="sim-item" draggable="true" data-ch="${ch}" data-ev="${evName}"
+        ondragstart="simOnDragStart(event)" ondragover="simOnDragOver(event)"
+        ondrop="simOnDrop(event)" ondragend="simOnDragEnd(event)"
+        ontouchstart="simTouchStart(event)" ontouchmove="simTouchMove(event)" ontouchend="simTouchEnd(event)">
+        <span class="sim-rank">${SIM_MEDALS[i]}</span>
+        <span class="sim-ch">${ch}</span>
+        <span class="sim-pts">+${pts}</span>
+      </div>`;
+    });
+    leftHTML+='</div><p class="sim-drag-hint">&#9776; drag to reorder</p></div>';
+  });
+  leftHTML+='</div>';
+  const rightHTML=`<div class="sim-standings-wrap" id="simStandings">${simStandingsHTML()}</div>`;
+  document.getElementById('simPanels').innerHTML=leftHTML+rightHTML;
+}
+
+function simRefreshList(list,evName){
+  const d=SIM[simDiv];
+  [...list.querySelectorAll('.sim-item')].forEach((item,i)=>{
+    const ch=item.dataset.ch;
+    item.querySelector('.sim-rank').textContent=SIM_MEDALS[i];
+    item.querySelector('.sim-pts').textContent='+'+d.events[evName][i+1];
+  });
+  d.orders[evName]=[...list.querySelectorAll('.sim-item')].map(el=>el.dataset.ch);
+}
+
+function simRefreshStandings(){
+  const el=document.getElementById('simStandings');
+  if(el)el.innerHTML=simStandingsHTML();
+}
+
+// Mouse drag-and-drop
+function simOnDragStart(e){
+  simDragEl=e.currentTarget;
+  e.currentTarget.classList.add('dragging');
+  e.dataTransfer.effectAllowed='move';
+}
+function simOnDragOver(e){
+  e.preventDefault();
+  const target=e.currentTarget;
+  if(!simDragEl||target===simDragEl)return;
+  target.classList.add('drag-over');
+  const list=target.parentNode;
+  const items=[...list.querySelectorAll('.sim-item')];
+  const rect=target.getBoundingClientRect();
+  const after=(e.clientY-rect.top)>rect.height/2;
+  if(after)list.insertBefore(simDragEl,target.nextSibling);
+  else list.insertBefore(simDragEl,target);
+  simRefreshList(list,target.dataset.ev);
+}
+function simOnDrop(e){e.preventDefault();}
+function simOnDragEnd(e){
+  e.currentTarget.classList.remove('dragging');
+  document.querySelectorAll('.sim-item').forEach(el=>el.classList.remove('drag-over'));
+  simDragEl=null;
+  simRefreshStandings();
+}
+
+// Touch drag-and-drop
+let simTouchItem=null,simTouchClone=null,simTouchList=null,simTouchEv=null;
+function simTouchStart(e){
+  const item=e.currentTarget;
+  simTouchItem=item;
+  simTouchList=item.parentNode;
+  simTouchEv=item.dataset.ev;
+  const r=item.getBoundingClientRect();
+  simTouchClone=item.cloneNode(true);
+  simTouchClone.style.cssText=`position:fixed;left:${r.left}px;top:${r.top}px;width:${r.width}px;opacity:.85;pointer-events:none;z-index:9999;border-radius:9px;`;
+  document.body.appendChild(simTouchClone);
+  item.style.opacity='.3';
+}
+function simTouchMove(e){
+  if(!simTouchClone)return;
+  e.preventDefault();
+  const t=e.touches[0];
+  simTouchClone.style.left=(t.clientX-simTouchClone.offsetWidth/2)+'px';
+  simTouchClone.style.top=(t.clientY-30)+'px';
+  const els=[...simTouchList.querySelectorAll('.sim-item')].filter(el=>el!==simTouchItem);
+  els.forEach(el=>el.classList.remove('drag-over'));
+  const over=els.find(el=>{const r=el.getBoundingClientRect();return t.clientY>=r.top&&t.clientY<=r.bottom;});
+  if(over){
+    over.classList.add('drag-over');
+    const r=over.getBoundingClientRect();
+    if((t.clientY-r.top)>r.height/2)simTouchList.insertBefore(simTouchItem,over.nextSibling);
+    else simTouchList.insertBefore(simTouchItem,over);
+    simRefreshList(simTouchList,simTouchEv);
+  }
+}
+function simTouchEnd(e){
+  if(simTouchClone){simTouchClone.remove();simTouchClone=null;}
+  if(simTouchItem){simTouchItem.style.opacity='';simTouchItem=null;}
+  document.querySelectorAll('.sim-item').forEach(el=>el.classList.remove('drag-over'));
+  simRefreshStandings();
+}
+
 // ── INIT ─────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded',()=>{
   // Official notices — show in sequence, once per session
@@ -855,6 +1085,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   renderChapters();
   loadData();
   updateCountdown();
+  renderSim();
   setTimeout(setupFI,200);
 });
 </script>
