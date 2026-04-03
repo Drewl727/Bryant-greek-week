@@ -211,6 +211,9 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
 /* ── CONDUCT BANNER ── */
 #conductBanner{background:rgba(234,179,8,0.07);border-bottom:1px solid rgba(234,179,8,0.18);padding:.55rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:58px;transition:max-height .35s ease,padding .35s,opacity .35s;overflow:hidden;max-height:80px}
 #conductBanner.gone{max-height:0;padding-top:0;padding-bottom:0;opacity:0;border:none;margin-top:58px}
+#suppliesBanner{background:rgba(56,189,248,0.07);border-bottom:1px solid rgba(56,189,248,0.2);padding:.55rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;transition:max-height .35s ease,padding .35s,opacity .35s;overflow:hidden;max-height:80px}
+#suppliesBanner.gone{max-height:0;padding-top:0;padding-bottom:0;opacity:0;border:none}
+#suppliesBanner .banner-text b{color:#7dd3fc}
 .banner-text{font-size:.74rem;color:var(--t2);flex:1;line-height:1.5}
 .banner-text b{color:var(--gold)}
 .banner-close{background:none;border:none;color:var(--t3);cursor:pointer;font-size:1rem;line-height:1;padding:.2rem .4rem;flex-shrink:0;font-family:'Outfit',sans-serif}
@@ -410,6 +413,12 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
 <div id="conductBanner">
   <span class="banner-text">&#9888;&#65039; <b>Point Deductions:</b> Chapters may lose points for unsportsmanlike conduct, cheating, or negative comments about other chapters — online or in person.</span>
   <button class="banner-close" onclick="dismissBanner()" title="Dismiss">&#10005;</button>
+</div>
+
+<!-- ANNOUNCEMENT BANNER -->
+<div id="suppliesBanner">
+  <span class="banner-text">&#128230; <b>Announcement:</b> School Supplies Drive results will be announced after Lip Sync.</span>
+  <button class="banner-close" onclick="dismissSuppliesBanner()" title="Dismiss">&#10005;</button>
 </div>
 
 <!-- HERO -->
@@ -828,6 +837,11 @@ function dismissNoticeJP(){
 }
 
 // ── CONDUCT BANNER ───────────────────────────────────────────
+function dismissSuppliesBanner(){
+  const b=document.getElementById('suppliesBanner');
+  b.classList.add('gone');
+  localStorage.setItem('suppliesBannerDone','1');
+}
 function dismissBanner(){
   const b=document.getElementById('conductBanner');
   b.classList.add('gone');
@@ -1075,10 +1089,14 @@ function simTouchEnd(e){
 document.addEventListener('DOMContentLoaded',()=>{
   // Official notices — show in sequence, once per session
   showNextNotice();
-  // Restore dismissed banner
+  // Restore dismissed banners
   if(localStorage.getItem('bannerDone')){
     const b=document.getElementById('conductBanner');
     if(b){b.style.display='none';}
+  }
+  if(localStorage.getItem('suppliesBannerDone')){
+    const b=document.getElementById('suppliesBanner');
+    if(b){b.classList.add('gone');}
   }
   renderSchedule();
   renderRules();
