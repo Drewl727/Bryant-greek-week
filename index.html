@@ -209,8 +209,8 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
 .ft-sub{font-size:.7rem;color:var(--t3);letter-spacing:.1em}
 
 /* ── CONDUCT BANNER ── */
-#conductBanner{background:rgba(234,179,8,0.07);border-bottom:1px solid rgba(234,179,8,0.18);padding:.55rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:58px;transition:max-height .35s ease,padding .35s,opacity .35s;overflow:hidden;max-height:80px}
-#conductBanner.gone{max-height:0;padding-top:0;padding-bottom:0;opacity:0;border:none;margin-top:58px}
+#conductBanner{background:rgba(234,179,8,0.07);border-bottom:1px solid rgba(234,179,8,0.18);padding:.55rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;transition:max-height .35s ease,padding .35s,opacity .35s;overflow:hidden;max-height:80px}
+#conductBanner.gone{max-height:0;padding-top:0;padding-bottom:0;opacity:0;border:none}
 .banner-text{font-size:.74rem;color:var(--t2);flex:1;line-height:1.5}
 .banner-text b{color:var(--gold)}
 .banner-close{background:none;border:none;color:var(--t3);cursor:pointer;font-size:1rem;line-height:1;padding:.2rem .4rem;flex-shrink:0;font-family:'Outfit',sans-serif}
@@ -318,6 +318,10 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
   /* Chapters */
   .ch-grid.sor,.ch-grid.frat{grid-template-columns:repeat(2,1fr)}
 
+  /* Celebration */
+  .celeb-winners{flex-direction:column}
+  .celeb-title{font-size:1.6rem}
+
   /* Section padding */
   section{padding:3.5rem 1rem}
 
@@ -329,6 +333,25 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
 </style>
 
 <style>
+/* ── CELEBRATION ── */
+.celeb-card{border-color:rgba(255,215,0,0.7)!important;box-shadow:0 0 100px rgba(255,215,0,0.25)!important;max-width:520px!important}
+.celeb-top{background:linear-gradient(135deg,rgba(255,215,0,0.18),rgba(255,215,0,0.05));padding:2rem;text-align:center;border-bottom:1px solid rgba(255,215,0,0.3)}
+.celeb-trophy{font-size:3.8rem;display:block;animation:celeb-bounce .75s ease-in-out infinite alternate}
+@keyframes celeb-bounce{0%{transform:translateY(0) scale(1)}100%{transform:translateY(-10px) scale(1.07)}}
+.celeb-title{font-size:2rem;font-weight:900;color:var(--gold);line-height:1.2;margin-bottom:1.4rem;letter-spacing:-.01em;text-align:center}
+.celeb-sub{font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--t3);text-align:center;margin-bottom:1.6rem}
+.celeb-winners{display:flex;gap:.75rem;margin-bottom:1.5rem}
+.celeb-winner{flex:1;display:flex;flex-direction:column;align-items:center;gap:.3rem;background:rgba(255,215,0,0.07);border:1px solid rgba(255,215,0,0.25);border-radius:12px;padding:1rem .8rem}
+.celeb-winner-icon{font-size:1.5rem}
+.celeb-winner-name{font-size:1rem;font-weight:800;color:var(--gold);text-align:center}
+.celeb-winner-div{font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3)}
+.celeb-ripper{text-align:center;font-size:1.1rem;font-weight:900;color:var(--gold);letter-spacing:.08em;padding:.8rem 1.2rem;background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.3);border-radius:10px;margin-bottom:1.5rem;animation:cd-flash 1s ease-in-out infinite}
+.celeb-btn{width:100%;font-size:1rem!important;padding:.85rem 1.5rem!important;background:var(--gold)!important;color:#000!important;border-radius:10px!important;font-weight:900!important;letter-spacing:.04em}
+
+/* Celebration banner */
+#celebBanner{background:linear-gradient(90deg,rgba(255,215,0,0.13),rgba(255,215,0,0.07),rgba(255,215,0,0.13));border-bottom:1px solid rgba(255,215,0,0.35);padding:.65rem 1.5rem;display:flex;align-items:center;justify-content:center;gap:.5rem;text-align:center;font-size:.82rem;font-weight:700;color:var(--gold);letter-spacing:.02em;flex-wrap:wrap;margin-top:58px}
+#celebBanner span{color:var(--t1)}
+
 /* ── WHAT IF SIMULATOR ── */
 #simulator{background:linear-gradient(180deg,#0a0a14 0%,#0d0d1c 100%)}
 .sim-tabs{display:flex;gap:.5rem;margin-bottom:1.8rem;background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.12);border-radius:12px;padding:.3rem}
@@ -368,6 +391,33 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
+<!-- CELEBRATION MODAL -->
+<div id="noticeCelebration" class="notice-overlay" style="display:none">
+  <div class="notice-card celeb-card">
+    <div class="celeb-top">
+      <span class="celeb-trophy">&#127942;</span>
+    </div>
+    <div class="notice-body">
+      <div class="celeb-sub">Greek Week 2026 &mdash; The Olympics</div>
+      <div class="celeb-title">Congratulations<br>Champions!</div>
+      <div class="celeb-winners">
+        <div class="celeb-winner">
+          <span class="celeb-winner-icon">&#127800;</span>
+          <span class="celeb-winner-name">Delta Zeta</span>
+          <span class="celeb-winner-div">Sorority Champions</span>
+        </div>
+        <div class="celeb-winner">
+          <span class="celeb-winner-icon">&#127963;</span>
+          <span class="celeb-winner-name">Delta Kappa Epsilon</span>
+          <span class="celeb-winner-div">Fraternity Champions</span>
+        </div>
+      </div>
+      <div class="celeb-ripper">&#127881; PO RIPPER TONIGHT &#127881;</div>
+      <button class="notice-close celeb-btn" onclick="dismissCelebration()">Let&#39;s Go! &#127882;</button>
+    </div>
+  </div>
+</div>
+
 <!-- OFFICIAL NOTICE MODAL — JP Statement -->
 <div id="noticeJP" class="notice-overlay" style="display:none">
   <div class="notice-card">
@@ -405,6 +455,9 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
   </ul>
   <div class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
 </nav>
+
+<!-- CELEBRATION BANNER -->
+<div id="celebBanner">&#127942; <span>DZ</span> &amp; <span>DKE</span> are your Greek Week 2026 Champions! &nbsp;&#127881; PO Ripper tonight!</div>
 
 <!-- CONDUCT BANNER -->
 <div id="conductBanner">
@@ -559,17 +612,17 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
 // ── SCORES & EVENTS DATA (update manually) ───────────────────
 const FB_PTS = {
   sororities:[
-    {abbr:'Sigma',name:'Sigma Sigma Sigma',    total:590},
-    {abbr:'DZ',   name:'Delta Zeta',          total:590},
-    {abbr:'AOII', name:'Alpha Omicron Pi',     total:515},
-    {abbr:'ASA',  name:'Alpha Sigma Alpha',    total:455},
+    {abbr:'DZ',   name:'Delta Zeta',           total:1140},
+    {abbr:'Sigma',name:'Sigma Sigma Sigma',     total:1040},
+    {abbr:'AOII', name:'Alpha Omicron Pi',      total:940},
+    {abbr:'ASA',  name:'Alpha Sigma Alpha',     total:780},
   ],
   fraternities:[
-    {abbr:'DKE',  name:'Delta Kappa Epsilon',  total:695},
-    {abbr:'TKE',  name:'Tau Kappa Epsilon',    total:585},
-    {abbr:'EX',   name:'Sigma Chi',            total:510},
-    {abbr:'DX',   name:'Delta Chi',            total:460},
-    {abbr:'TEP',  name:'Tau Epsilon Phi',      total:420},
+    {abbr:'DKE',  name:'Delta Kappa Epsilon',   total:1095},
+    {abbr:'TKE',  name:'Tau Kappa Epsilon',     total:1060},
+    {abbr:'EX',   name:'Sigma Chi',             total:960},
+    {abbr:'TEP',  name:'Tau Epsilon Phi',       total:795},
+    {abbr:'DX',   name:'Delta Chi',             total:760},
   ]
 };
 
@@ -583,8 +636,8 @@ const FB_EV = {
     {name:'Jeopardy',    icon:'🧠',places:['ASA (100)','AOII (75)','Sigma (50)','DZ (25)']},
     {name:'Tug of War',  icon:'💪',places:['AOII (100)','DZ (75)','Sigma (50)','ASA (25)']},
     {name:'Relay Race',  icon:'🏃',places:['Sigma (100)','ASA (75)','DZ (50)','AOII (25)']},
-    {name:'Lip Sync',    icon:'🎤',places:[]},
-    {name:'School Supplies',icon:'📦',places:[]},
+    {name:'Lip Sync',    icon:'🎤',places:['DZ (350)','Sigma (300)','AOII (250)','ASA (200)']},
+    {name:'School Supplies',icon:'📦',places:['DZ (200)','AOII (175)','Sigma (150)','ASA (125)']},
   ],
   frat:[
     {name:'Mocktails',   icon:'🍹',places:['TKE (100)','TEP (80)','DKE (60)','EX (40)','DX (20)']},
@@ -595,8 +648,8 @@ const FB_EV = {
     {name:'Jeopardy',    icon:'🧠',places:['EX (100)','DX (80)','TEP (60)','TKE (40)','DKE (20)']},
     {name:'Tug of War',  icon:'💪',places:['DKE (100)','EX (80)','TKE (60)','DX (40)','TEP (20)']},
     {name:'Relay Race',  icon:'🏃',places:['DKE / DX (100)','TKE (80)','EX (60)','TEP (40)']},
-    {name:'Lip Sync',    icon:'🎤',places:[]},
-    {name:'School Supplies',icon:'📦',places:[]},
+    {name:'Lip Sync',    icon:'🎤',places:['EX (350)','TKE (300)','TEP (250)','DKE (200)','DX (150)']},
+    {name:'School Supplies',icon:'📦',places:['DKE (200)','TKE (175)','DX (150)','TEP (125)','EX (100)']},
   ]
 };
 
@@ -835,17 +888,21 @@ function closeNav(){document.getElementById('navLinks').classList.remove('open')
 
 // ── OFFICIAL NOTICES ─────────────────────────────────────────
 function showNextNotice(){
-  if(new Date()>=new Date(2026,3,4))return; // expire after Apr 3
-  if(!sessionStorage.getItem('noticeJPSeen')){
-    document.getElementById('noticeJP').style.display='flex';
-  } else if(!sessionStorage.getItem('noticeSuppliesSeen')){
-    document.getElementById('noticeSupplies').style.display='flex';
+  if(!sessionStorage.getItem('noticeCelebrationSeen')){
+    document.getElementById('noticeCelebration').style.display='flex';return;
   }
+  if(new Date()<new Date(2026,3,4)&&!sessionStorage.getItem('noticeJPSeen')){
+    document.getElementById('noticeJP').style.display='flex';
+  }
+}
+function dismissCelebration(){
+  document.getElementById('noticeCelebration').style.display='none';
+  sessionStorage.setItem('noticeCelebrationSeen','1');
+  showNextNotice();
 }
 function dismissNoticeJP(){
   document.getElementById('noticeJP').style.display='none';
   sessionStorage.setItem('noticeJPSeen','1');
-  showNextNotice();
 }
 function dismissNoticeSupplies(){
   document.getElementById('noticeSupplies').style.display='none';
