@@ -418,29 +418,6 @@ footer{background:var(--black);border-top:1px solid rgba(255,215,0,0.09);padding
   </div>
 </div>
 
-<!-- OFFICIAL NOTICE MODAL — JP Statement -->
-<div id="noticeJP" class="notice-overlay" style="display:none">
-  <div class="notice-card">
-    <div class="notice-top notice-top-gold">
-      <span class="notice-badge notice-badge-gold">&#128196; Official Statement</span>
-      <span class="notice-label notice-label-gold">JP Colasacco &middot; IFC &amp; Panhel Exec</span>
-    </div>
-    <div class="notice-body">
-      <div class="notice-title">Message to All Chapters</div>
-      <div class="notice-rules-list">
-        <div class="notice-rule-item">&#128683; <strong>Zero tolerance for alcohol</strong> in Fisher, Janikies, Conaty, and all major campus spaces &mdash; violations affect the entire chapter and will be handled as a campus conduct matter.</div>
-        <div class="notice-rule-item">&#128245; <strong>Do not contact</strong> IFC Exec, Panhel Exec, or JP to excuse or reconcile member behavior during events.</div>
-        <div class="notice-rule-item">&#9999;&#65039; All chapter presidents <strong>signed and agreed</strong> to the Greek Week rulebook. These rules are non-negotiable and strictly enforced.</div>
-        <div class="notice-rule-item">&#127942; Compete with <strong>intensity, respect, accountability, and class</strong>. Any further issues will be addressed promptly and firmly.</div>
-      </div>
-      <div class="notice-footer">
-        <span class="notice-sig">JP Colasacco &middot; IFC &amp; Panhel Exec &middot; April 2026</span>
-        <button class="notice-close" onclick="dismissNoticeJP()">Acknowledged</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 <!-- NAV -->
 <nav>
@@ -891,18 +868,11 @@ function showNextNotice(){
   if(!sessionStorage.getItem('noticeCelebrationSeen')){
     document.getElementById('noticeCelebration').style.display='flex';return;
   }
-  if(new Date()<new Date(2026,3,4)&&!sessionStorage.getItem('noticeJPSeen')){
-    document.getElementById('noticeJP').style.display='flex';
-  }
 }
 function dismissCelebration(){
   document.getElementById('noticeCelebration').style.display='none';
   sessionStorage.setItem('noticeCelebrationSeen','1');
   showNextNotice();
-}
-function dismissNoticeJP(){
-  document.getElementById('noticeJP').style.display='none';
-  sessionStorage.setItem('noticeJPSeen','1');
 }
 function dismissNoticeSupplies(){
   document.getElementById('noticeSupplies').style.display='none';
